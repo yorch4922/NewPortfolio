@@ -26,12 +26,12 @@ export default function Hero() {
 
         <div className="order-1 md:order-2 flex justify-center">
           <div className="relative w-72 h-72 md:w-[480px] md:h-[480px]">
-             {/* Gradient/Pattern Background for Image */}
+            {/* Gradient/Pattern Background for Image */}
             <div className="absolute inset-0 rounded-full bg-[#C8BAA8] overflow-hidden border-8 border-white/50 shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1743012394316-4606e330ef23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMzNzI0NjF8&ixlib=rb-4.1.0&q=80&w=1080"
+                src="https://5fjjbtb15mr59rsn.public.blob.vercel-storage.com/portfolio_edited%201.png"
                 alt="Jorge Oropeza Portrait"
-                className="w-full h-full object-cover grayscale-0 hover:grayscale-[0.2] transition-all"
+                className="w-full h-full object-cover grayscale-0 hover:grayscale-[0.1] transition-all"
               />
             </div>
           </div>
