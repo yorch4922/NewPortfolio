@@ -1,36 +1,93 @@
-import { Linkedin, Mail } from "lucide-react";
-
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 bg-bg">
-      <div className="container-custom flex flex-col items-center gap-12 text-center">
-        <div className="max-w-3xl flex flex-col gap-6">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-text-primary">Let&apos;s Work Together</h2>
-          <p className="font-sans text-base md:text-lg text-text-secondary leading-relaxed">
-            I bring an anthropological lens to digital product design — ensuring your solutions resonate deeply with the people they&apos;re built for.
-          </p>
-        </div>
+    <section id="contact" className="py-24 bg-card-bg">
+      <div className="container-custom">
+        <div className="bg-bg rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row min-h-[600px] border border-gray-100">
+          {/* Left Column: Heading & Actions */}
+          <div className="md:w-1/2 p-10 md:p-16 flex flex-col justify-center gap-10">
+            <div className="flex flex-col gap-6">
+              <h2 className="font-serif text-5xl md:text-6xl font-bold text-accent leading-tight">
+                Let's work together.
+              </h2>
+              <p className="font-sans text-lg md:text-xl text-text-secondary leading-relaxed max-w-md">
+                Have a project in mind? Looking for a partner to build something amazing? Feel free to reach out.
+              </p>
+            </div>
 
-        <div className="grid sm:grid-cols-2 gap-8 w-full max-w-2xl">
-          <a href="https://linkedin.com/in/jyoropeza" target="_blank" rel="noopener noreferrer" className="bg-card-bg p-10 rounded-3xl flex flex-col items-center gap-6 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all group">
-            <div className="p-4 bg-accent/5 rounded-full group-hover:bg-accent transition-all duration-300">
-              <Linkedin size={40} className="text-accent group-hover:text-white transition-colors" />
-            </div>
-            <div className="flex flex-col gap-1">
-              <span className="font-serif text-xl font-bold text-text-primary uppercase tracking-wider">LinkedIn</span>
-              <span className="font-sans text-sm text-accent font-medium">linkedin.com/in/jyoropeza</span>
-            </div>
-          </a>
+            <div className="flex flex-col gap-6">
+              <a 
+                href="mailto:jorgeyaelorga@gmail.com" 
+                className="flex flex-col group"
+              >
+                <p className="font-sans text-xs font-bold text-accent tracking-[0.2em] uppercase">Email Me</p>
+                <p className="font-sans text-lg md:text-xl font-bold text-text-primary mt-1 group-hover:text-accent transition-colors">
+                  jorgeyaelorga@gmail.com
+                </p>
+              </a>
 
-          <a href="mailto:jorgeyaelorga@gmail.com" className="bg-card-bg p-10 rounded-3xl flex flex-col items-center gap-6 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all group">
-            <div className="p-4 bg-accent/5 rounded-full group-hover:bg-accent group-hover:text-white transition-all duration-300">
-              <Mail size={40} className="text-accent group-hover:text-white transition-colors" />
+              <a 
+                href="https://linkedin.com/in/jorgeoropeza" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex flex-col group"
+              >
+                <p className="font-sans text-xs font-bold text-accent tracking-[0.2em] uppercase">LinkedIn</p>
+                <p className="font-sans text-lg md:text-xl font-bold text-text-primary mt-1 group-hover:text-accent transition-colors">
+                  Jorge Oropeza
+                </p>
+              </a>
             </div>
-            <div className="flex flex-col gap-1">
-              <span className="font-serif text-xl font-bold text-text-primary uppercase tracking-wider">Email</span>
-              <span className="font-sans text-sm text-accent font-medium">jorgeyaelorga@gmail.com</span>
+          </div>
+
+          {/* Right Column: Form Card */}
+          <div className="md:w-1/2 p-6 md:p-12 bg-bg flex items-center justify-center">
+            <div className="bg-white rounded-3xl p-8 md:p-12 w-full max-w-md shadow-xl border border-gray-50">
+              <form className="flex flex-col gap-6">
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="name" className="font-sans text-sm font-bold text-text-secondary">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    placeholder="Your Name"
+                    className="w-full px-4 py-3 bg-[#F9FAFB] border border-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all font-sans text-text-primary"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="email" className="font-sans text-sm font-bold text-text-secondary">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="your@email.com"
+                    className="w-full px-4 py-3 bg-[#F9FAFB] border border-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all font-sans text-text-primary"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="message" className="font-sans text-sm font-bold text-text-secondary">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    rows={4}
+                    placeholder="Tell me about your project..."
+                    className="w-full px-4 py-3 bg-[#F9FAFB] border border-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all font-sans resize-none text-text-primary"
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full bg-accent text-white font-bold py-4 rounded-xl hover:brightness-110 active:scale-[0.98] transition-all shadow-lg shadow-accent/20 mt-2"
+                >
+                  Send Message
+                </button>
+              </form>
             </div>
-          </a>
+          </div>
         </div>
       </div>
     </section>

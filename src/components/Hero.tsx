@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -18,9 +19,12 @@ export default function Hero() {
             A specialist in participatory design and qualitative research, combining anthropological methods with UX to craft deeply human-centered experiences.
           </p>
           <div className="pt-4 flex justify-center md:justify-start">
-            <button className="px-10 py-4 bg-accent text-white rounded font-bold hover:brightness-110 transition-all shadow-lg shadow-accent/20">
+            <Link 
+              href="/jyresume" 
+              className="px-10 py-4 bg-accent text-white rounded font-bold hover:brightness-110 transition-all shadow-lg shadow-accent/20"
+            >
               View Resume
-            </button>
+            </Link>
           </div>
         </div>
 

@@ -55,11 +55,6 @@ export default function Projects() {
                   <button className="px-6 py-3 bg-accent text-white rounded font-bold hover:brightness-110 transition-all text-sm shadow-sm">
                     View Project
                   </button>
-                  {i === 2 && (
-                    <button className="px-6 py-3 border border-accent text-accent rounded font-bold hover:bg-accent/5 transition-all text-sm">
-                      Read Thesis
-                    </button>
-                  )}
                 </div>
               </div>
             </div>

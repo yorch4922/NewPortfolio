@@ -9,13 +9,11 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <main className="min-h-screen selection:bg-accent/30 selection:text-accent">
-      <Navbar />
       <Hero />
       <About />
       <Experience />
       <Projects />
       <Contact />
-      <Footer />
     </main>
   );
 }
