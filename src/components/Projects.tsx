@@ -6,11 +6,11 @@ import { motion } from "framer-motion";
 export default function Projects() {
   const projects = [
     {
-      title: "Reducing Geoprocessing to 3 Clicks",
+      title: "Optimize geospatial analysis: A couple of clicks to get crucial Information",
       badge: "GIS & Mapping",
       desc: "Designed and deployed a mapping application that empowers municipal staff to instantly access critical risk data and generate custom geographic layers—drastically reducing manual workload and democratizing data accessibility.",
       image: "https://5fjjbtb15mr59rsn.public.blob.vercel-storage.com/%C3%81reaTrabajo_Inicio%201.png",
-      href: "#"
+      href: "/projects/optimize-geospatial-analysis"
     },
     {
       title: "Streamlining Urban Development Processes",
@@ -47,7 +47,7 @@ export default function Projects() {
 
   return (
     <section id="projects" className="py-24 bg-card-bg overflow-hidden">
-      <motion.div 
+      <motion.div
         className="container-custom"
         variants={containerVariants}
         initial="hidden"
@@ -65,8 +65,8 @@ export default function Projects() {
 
         <div className="grid gap-16">
           {projects.map((p, i) => (
-            <motion.div 
-              key={i} 
+            <motion.div
+              key={i}
               variants={itemVariants}
               whileHover={{ y: -5 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -94,8 +94,8 @@ export default function Projects() {
                 </p>
                 <div className="pt-4 flex gap-4">
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Link 
-                      href={p.href} 
+                    <Link
+                      href={p.href}
                       className="inline-block px-6 py-3 bg-accent text-white rounded font-bold hover:brightness-110 shadow-sm transition-colors cursor-pointer"
                     >
                       View Project
