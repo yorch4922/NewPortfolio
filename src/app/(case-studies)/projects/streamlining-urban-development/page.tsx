@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Users, Zap, Award, PencilRuler, ArrowRightCircle, Database, Layers, Search, CheckCircle } from "lucide-react";
