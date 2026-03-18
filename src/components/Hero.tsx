@@ -45,15 +45,14 @@ export default function Hero() {
             Specializing in participatory design and qualitative research, I merge anthropological methodologies with UX principles to architect deeply human-centered digital experiences.
           </motion.p>
           <motion.div variants={itemVariants} className="pt-4 flex justify-center md:justify-start">
-            <Link href="/jyresume" passHref legacyBehavior>
-              <motion.a 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link 
+                href="/jyresume" 
                 className="inline-block px-10 py-4 bg-accent text-white rounded font-bold hover:brightness-110 shadow-lg shadow-accent/20 cursor-pointer"
               >
                 View Resume
-              </motion.a>
-            </Link>
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
 

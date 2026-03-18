@@ -93,15 +93,14 @@ export default function Projects() {
                   {p.desc}
                 </p>
                 <div className="pt-4 flex gap-4">
-                  <Link href={p.href} passHref legacyBehavior>
-                    <motion.a 
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Link 
+                      href={p.href} 
                       className="inline-block px-6 py-3 bg-accent text-white rounded font-bold hover:brightness-110 shadow-sm transition-colors cursor-pointer"
                     >
                       View Project
-                    </motion.a>
-                  </Link>
+                    </Link>
+                  </motion.div>
                 </div>
               </div>
             </motion.div>
