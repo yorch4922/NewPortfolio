@@ -10,12 +10,12 @@ export default function DigitalizingProcedures() {
   return (
     <main className="min-h-screen bg-white font-sans text-text-primary">
       {/* Hero Section */}
-      <motion.section 
-      initial={{ opacity: 0, y: 30 }} 
-      whileInView={{ opacity: 1, y: 0 }} 
-      viewport={{ once: true, margin: "-50px" }} 
-      transition={{ duration: 0.8 }} 
-      className="pt-40 pb-20 px-6 md:px-20 lg:px-32 flex flex-col items-center text-center max-w-7xl mx-auto">
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8 }}
+        className="pt-40 pb-20 px-6 md:px-20 lg:px-32 flex flex-col items-center text-center max-w-7xl mx-auto">
         <span className="text-accent font-bold text-sm tracking-widest uppercase mb-4">Case Study</span>
         <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
           Streamlining Urban Development Processes
@@ -33,9 +33,9 @@ export default function DigitalizingProcedures() {
         </div>
 
         {/* Mockup Container */}
-        <motion.div 
-          whileHover={{ scale: 1.02, rotate: 1 }} 
-          transition={{ type: "spring", stiffness: 300, damping: 20 }} 
+        <motion.div
+          whileHover={{ scale: 1.02, rotate: 1 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
           className="relative w-full max-w-5xl aspect-[1000/500] bg-[#F5F6F7] rounded-3xl overflow-hidden shadow-2xl group"
         >
           <Image
@@ -54,12 +54,12 @@ export default function DigitalizingProcedures() {
       </motion.section>
 
       {/* Executive Summary / Value Prop */}
-      <motion.section 
-      initial={{ opacity: 0, y: 30 }} 
-      whileInView={{ opacity: 1, y: 0 }} 
-      viewport={{ once: true, margin: "-50px" }} 
-      transition={{ duration: 0.8 }} 
-      className="py-24 px-6 md:px-20 lg:px-32 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr,300px] gap-20 lg:gap-32">
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8 }}
+        className="py-24 px-6 md:px-20 lg:px-32 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr,300px] gap-20 lg:gap-32">
         <div className="flex flex-col gap-6">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-text-primary">Value Proposition</h2>
           <p className="text-text-secondary text-lg leading-relaxed font-light">
@@ -86,12 +86,12 @@ export default function DigitalizingProcedures() {
       </motion.section>
 
       {/* Discovery Phase: Research Insights */}
-      <motion.section 
-      initial={{ opacity: 0, y: 30 }} 
-      whileInView={{ opacity: 1, y: 0 }} 
-      viewport={{ once: true, margin: "-50px" }} 
-      transition={{ duration: 0.8 }} 
-      className="py-24 bg-[#F8F9FA] px-6 md:px-20 lg:px-32">
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8 }}
+        className="py-24 bg-[#F8F9FA] px-6 md:px-20 lg:px-32">
         <div className="max-w-7xl mx-auto flex flex-col gap-12">
           <div className="text-center space-y-4">
             <span className="text-accent font-bold text-sm tracking-widest uppercase italic">01. Discovery Phase</span>
@@ -124,12 +124,12 @@ export default function DigitalizingProcedures() {
       </motion.section>
 
       {/* IA & Measurements */}
-      <motion.section 
-      initial={{ opacity: 0, y: 30 }} 
-      whileInView={{ opacity: 1, y: 0 }} 
-      viewport={{ once: true, margin: "-50px" }} 
-      transition={{ duration: 0.8 }} 
-      className="py-24 px-6 md:px-20 lg:px-32 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8 }}
+        className="py-24 px-6 md:px-20 lg:px-32 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
         <div className="flex flex-col gap-8 flex-1">
           <div className="space-y-4">
             <span className="text-accent font-bold text-sm tracking-widest uppercase italic">02. Definition Phase</span>
@@ -167,12 +167,12 @@ export default function DigitalizingProcedures() {
       </motion.section>
 
       {/* Process Section */}
-      <motion.section 
-      initial={{ opacity: 0, y: 30 }} 
-      whileInView={{ opacity: 1, y: 0 }} 
-      viewport={{ once: true, margin: "-50px" }} 
-      transition={{ duration: 0.8 }} 
-      className="py-24 px-6 md:px-20 lg:px-32 max-w-7xl mx-auto flex flex-col gap-12">
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8 }}
+        className="py-24 px-6 md:px-20 lg:px-32 max-w-7xl mx-auto flex flex-col gap-12">
         <h2 className="text-accent font-bold text-sm tracking-widest uppercase text-center italic">Process & Implementation</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
@@ -190,12 +190,12 @@ export default function DigitalizingProcedures() {
       </motion.section>
 
       {/* Community Development Section */}
-      <motion.section 
-      initial={{ opacity: 0, y: 30 }} 
-      whileInView={{ opacity: 1, y: 0 }} 
-      viewport={{ once: true, margin: "-50px" }} 
-      transition={{ duration: 0.8 }} 
-      className="py-24 bg-white px-6 md:px-20 lg:px-32 max-w-7xl mx-auto flex flex-col gap-10">
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8 }}
+        className="py-24 bg-white px-6 md:px-20 lg:px-32 max-w-7xl mx-auto flex flex-col gap-10">
         <div className="flex flex-col lg:flex-row justify-between items-end gap-8">
           <div className="flex flex-col gap-4 max-w-2xl">
             <span className="text-accent font-bold text-sm tracking-widest uppercase italic">UX & ARCHITECTURE ANALYSIS</span>
@@ -203,9 +203,6 @@ export default function DigitalizingProcedures() {
             <p className="text-text-secondary text-lg leading-relaxed font-light">
               The development of internal tools for government officials to efficiently manage citizen data and requests.
             </p>
-            <Link href="#" className="text-accent font-bold text-sm uppercase tracking-widest hover:underline mt-2">
-              View Full Architecture Map
-            </Link>
           </div>
         </div>
 
@@ -224,23 +221,23 @@ export default function DigitalizingProcedures() {
       </motion.section>
 
       {/* Feature Deep-Dive 1 */}
-      <motion.section 
-      initial={{ opacity: 0, y: 30 }} 
-      whileInView={{ opacity: 1, y: 0 }} 
-      viewport={{ once: true, margin: "-50px" }} 
-      transition={{ duration: 0.8 }} 
-      className="py-24 bg-[#FDF2E9] px-6 md:px-20 lg:px-32">
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8 }}
+        className="py-24 bg-[#FDF2E9] px-6 md:px-20 lg:px-32">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
           <div className="flex flex-col gap-8 flex-1">
             <span className="text-accent font-bold text-sm tracking-widest uppercase italic font-bold">SPECIFIC FEATURE CASE</span>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary leading-tight">Revision de Memoria Descriptiva</h2>
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary leading-tight">Dynamic Form for Every Procedure</h2>
             <p className="text-text-secondary text-lg leading-relaxed font-light">
               A specialized tool for reviewing descriptive memories, ensuring that all legal and technical requirements are met before final approval.
             </p>
           </div>
           <div className="w-full lg:w-1/2 rounded-3xl overflow-hidden shadow-2xl border-4 border-white/50 bg-white">
             <Image
-              src="/images/projects/streamlining-urban-development/mOcui.webp"
+              src="https://5fjjbtb15mr59rsn.public.blob.vercel-storage.com/AB6AXU~1.PNG"
               alt="Revision de Memoria Descriptiva Feature Mockup"
               width={800}
               height={600}
@@ -251,16 +248,16 @@ export default function DigitalizingProcedures() {
       </motion.section>
 
       {/* Feature Deep-Dive 2 */}
-      <motion.section 
-      initial={{ opacity: 0, y: 30 }} 
-      whileInView={{ opacity: 1, y: 0 }} 
-      viewport={{ once: true, margin: "-50px" }} 
-      transition={{ duration: 0.8 }} 
-      className="py-24 px-6 md:px-20 lg:px-32 bg-white">
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8 }}
+        className="py-24 px-6 md:px-20 lg:px-32 bg-white">
         <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-32">
           <div className="w-full lg:w-1/2 rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-white">
             <Image
-              src="/images/projects/streamlining-urban-development/Uys36.webp"
+              src="https://5fjjbtb15mr59rsn.public.blob.vercel-storage.com/4taimagen.png"
               alt="Panel de Atencion Feature Mockup"
               width={800}
               height={600}
@@ -289,12 +286,12 @@ export default function DigitalizingProcedures() {
       </motion.section>
 
       {/* Lessons Learned */}
-      <motion.section 
-      initial={{ opacity: 0, y: 30 }} 
-      whileInView={{ opacity: 1, y: 0 }} 
-      viewport={{ once: true, margin: "-50px" }} 
-      transition={{ duration: 0.8 }} 
-      className="py-24 bg-[#F8F9FA] px-6 md:px-20 lg:px-32">
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8 }}
+        className="py-24 bg-[#F8F9FA] px-6 md:px-20 lg:px-32">
         <div className="max-w-7xl mx-auto flex flex-col gap-16">
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-text-primary text-center">What I Learned From This?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -316,12 +313,12 @@ export default function DigitalizingProcedures() {
       </motion.section>
 
       {/* Final CTA */}
-      <motion.section 
-      initial={{ opacity: 0, y: 30 }} 
-      whileInView={{ opacity: 1, y: 0 }} 
-      viewport={{ once: true, margin: "-50px" }} 
-      transition={{ duration: 0.8 }} 
-      className="py-40 px-6 text-center max-w-5xl mx-auto flex flex-col items-center gap-12">
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8 }}
+        className="py-40 px-6 text-center max-w-5xl mx-auto flex flex-col items-center gap-12">
         <div className="space-y-6">
           <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl font-black text-accent tracking-tighter uppercase leading-none">Liked this project?</h2>
           <p className="text-text-secondary text-xl md:text-2xl font-light max-w-2xl mx-auto leading-relaxed">
