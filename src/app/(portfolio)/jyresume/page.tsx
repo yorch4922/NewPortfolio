@@ -80,7 +80,7 @@ export default function ResumePage() {
           <section className="px-8 md:px-16 py-12 bg-white flex flex-col gap-6 border-b border-gray-50">
             <h2 className="font-serif text-3xl font-bold text-text-primary">Profile</h2>
             <p className="font-sans text-lg text-text-secondary leading-relaxed max-w-5xl">
-              Strategic Senior UX Designer and Anthropologist with 5+ years of experience bridging the gap between complex user behaviors and business objectives. I specialize in ethnography-driven design and participatory research to deliver high-impact products that reduce development churn and maximize user satisfaction.
+              Strategic UX Designer and Anthropologist with 4+ years of experience bridging the gap between complex user behaviors and business objectives. I specialize in ethnography-driven design and participatory research to deliver high-impact products that reduce development churn and maximize user satisfaction.
             </p>
           </section>
 

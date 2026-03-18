@@ -1,21 +1,45 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function Contact() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+  };
+
   return (
-    <section id="contact" className="py-24 bg-card-bg">
-      <div className="container-custom">
+    <section id="contact" className="py-24 bg-card-bg overflow-hidden">
+      <motion.div 
+        className="container-custom"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+      >
         <div className="bg-bg rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row min-h-[600px] border border-gray-100">
           {/* Left Column: Heading & Actions */}
           <div className="md:w-1/2 p-10 md:p-16 flex flex-col justify-center gap-10">
-            <div className="flex flex-col gap-6">
+            <motion.div variants={itemVariants} className="flex flex-col gap-6">
               <h2 className="font-serif text-5xl md:text-6xl font-bold text-accent leading-tight">
                 Let's work together.
               </h2>
               <p className="font-sans text-lg md:text-xl text-text-secondary leading-relaxed max-w-md">
                 Have a project in mind? Looking for a partner to build something amazing? Feel free to reach out.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-col gap-6">
-              <a 
+            <motion.div variants={itemVariants} className="flex flex-col gap-6">
+              <motion.a 
+                whileHover={{ x: 5 }}
                 href="mailto:jorgeyaelorga@gmail.com" 
                 className="flex flex-col group"
               >
@@ -23,9 +47,10 @@ export default function Contact() {
                 <p className="font-sans text-lg md:text-xl font-bold text-text-primary mt-1 group-hover:text-accent transition-colors">
                   jorgeyaelorga@gmail.com
                 </p>
-              </a>
+              </motion.a>
 
-              <a 
+              <motion.a 
+                whileHover={{ x: 5 }}
                 href="https://linkedin.com/in/jorgeoropeza" 
                 target="_blank" 
                 rel="noopener noreferrer"
@@ -35,12 +60,12 @@ export default function Contact() {
                 <p className="font-sans text-lg md:text-xl font-bold text-text-primary mt-1 group-hover:text-accent transition-colors">
                   Jorge Oropeza
                 </p>
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
           </div>
 
           {/* Right Column: Form Card */}
-          <div className="md:w-1/2 p-6 md:p-12 bg-bg flex items-center justify-center">
+          <motion.div variants={itemVariants} className="md:w-1/2 p-6 md:p-12 bg-bg flex items-center justify-center">
             <div className="bg-white rounded-3xl p-8 md:p-12 w-full max-w-md shadow-xl border border-gray-50">
               <form className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
@@ -79,17 +104,19 @@ export default function Contact() {
                   ></textarea>
                 </div>
 
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   type="submit"
-                  className="w-full bg-accent text-white font-bold py-4 rounded-xl hover:brightness-110 active:scale-[0.98] transition-all shadow-lg shadow-accent/20 mt-2"
+                  className="w-full bg-accent text-white font-bold py-4 rounded-xl shadow-lg shadow-accent/20 mt-2 transition-colors hover:brightness-110"
                 >
                   Send Message
-                </button>
+                </motion.button>
               </form>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
