@@ -26,7 +26,7 @@ export default function Projects() {
       badge: "Anthropological Research",
       desc: "A qualitative research project on graffiti in the municipality of Nezahualcoyotl, combining urban and art anthropology with ethnographic fieldwork, structured interviews, and participatory observation methods.",
       image: "https://5fjjbtb15mr59rsn.public.blob.vercel-storage.com/imagen%208%20%281%29.png",
-      href: "https://5fjjbtb15mr59rsn.public.blob.vercel-storage.com/TesisLicenciatura.pdf", // Add the Vercel Blob URL of your thesis here
+      href: "https://5fjjbtb15mr59rsn.public.blob.vercel-storage.com/TesisLicenciatura.pdf",
       buttonText: "Read Full Thesis",
       isExternal: true
     }
