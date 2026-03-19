@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { track } from "@vercel/analytics/react";
 
 export default function Projects() {
   const projects = [
@@ -25,9 +26,17 @@ export default function Projects() {
       badge: "Anthropological Research",
       desc: "A qualitative research project on graffiti in the municipality of Nezahualcoyotl, combining urban and art anthropology with ethnographic fieldwork, structured interviews, and participatory observation methods.",
       image: "https://5fjjbtb15mr59rsn.public.blob.vercel-storage.com/imagen%208%20%281%29.png",
-      href: "#"
+      href: "https://5fjjbtb15mr59rsn.public.blob.vercel-storage.com/TesisLicenciatura.pdf", // Add the Vercel Blob URL of your thesis here
+      buttonText: "Read Full Thesis",
+      isExternal: true
     }
   ];
+
+  const handleProjectClick = (title: string) => {
+    if (title.includes("Thesis")) {
+      track('viewed_thesis', { project: title });
+    }
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -101,12 +110,25 @@ export default function Projects() {
                 </p>
                 <div className="pt-4 flex gap-4">
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Link
-                      href={p.href}
-                      className="inline-block px-6 py-3 bg-accent text-white rounded font-bold hover:brightness-110 shadow-sm transition-colors cursor-pointer"
-                    >
-                      View Project
-                    </Link>
+                    {p.isExternal || p.href === "#" ? (
+                      <a
+                        href={p.href}
+                        target={p.isExternal ? "_blank" : undefined}
+                        rel={p.isExternal ? "noopener noreferrer" : undefined}
+                        onClick={() => handleProjectClick(p.title)}
+                        className="inline-block px-6 py-3 bg-accent text-white rounded font-bold hover:brightness-110 shadow-sm transition-colors cursor-pointer"
+                      >
+                        {p.buttonText || "View Project"}
+                      </a>
+                    ) : (
+                      <Link
+                        href={p.href}
+                        onClick={() => handleProjectClick(p.title)}
+                        className="inline-block px-6 py-3 bg-accent text-white rounded font-bold hover:brightness-110 shadow-sm transition-colors cursor-pointer"
+                      >
+                        {p.buttonText || "View Project"}
+                      </Link>
+                    )}
                   </motion.div>
                 </div>
               </div>
