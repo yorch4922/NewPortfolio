@@ -18,7 +18,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-24 bg-card-bg overflow-hidden">
-      <motion.div 
+      <motion.div
         className="container-custom"
         variants={containerVariants}
         initial="hidden"
@@ -38,9 +38,9 @@ export default function Contact() {
             </motion.div>
 
             <motion.div variants={itemVariants} className="flex flex-col gap-6">
-              <motion.a 
+              <motion.a
                 whileHover={{ x: 5 }}
-                href="mailto:jorgeyaelorga@gmail.com" 
+                href="mailto:jorgeyaelorga@gmail.com"
                 className="flex flex-col group"
               >
                 <p className="font-sans text-xs font-bold text-accent tracking-[0.2em] uppercase">Email Me</p>
@@ -49,10 +49,10 @@ export default function Contact() {
                 </p>
               </motion.a>
 
-              <motion.a 
+              <motion.a
                 whileHover={{ x: 5 }}
-                href="https://linkedin.com/in/jorgeoropeza" 
-                target="_blank" 
+                href="https://www.linkedin.com/in/jyoropeza/"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="flex flex-col group"
               >
