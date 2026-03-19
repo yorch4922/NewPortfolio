@@ -41,6 +41,8 @@ export default function Contact() {
               <motion.a
                 whileHover={{ x: 5 }}
                 href="mailto:jorgeyaelorga@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex flex-col group"
               >
                 <p className="font-sans text-xs font-bold text-accent tracking-[0.2em] uppercase">Email Me</p>
