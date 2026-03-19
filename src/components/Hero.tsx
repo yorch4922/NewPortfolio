@@ -63,7 +63,7 @@ export default function Hero() {
             className="relative w-72 h-72 md:w-[480px] md:h-[480px]"
           >
             {/* Gradient/Pattern Background for Image */}
-            <div className="absolute inset-0 rounded-full bg-[#C8BAA8] overflow-hidden border-8 border-white/50 shadow-2xl relative">
+            <div className="absolute inset-0 rounded-full bg-[#C8BAA8] overflow-hidden border-8 border-white/50 shadow-2xl">
               <Image
                 src="https://5fjjbtb15mr59rsn.public.blob.vercel-storage.com/portfolio_edited%201.png"
                 alt="Jorge Oropeza Portrait"
