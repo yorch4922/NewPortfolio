@@ -41,11 +41,13 @@ export default function Contact() {
               <motion.a
                 whileHover={{ x: 5 }}
                 href="mailto:jorgeyaelorga@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col group"
+                // Eliminamos target="_blank" y rel="noopener noreferrer" 
+                // porque no estamos navegando a una web externa.
+                className="flex flex-col group cursor-pointer"
               >
-                <p className="font-sans text-xs font-bold text-accent tracking-[0.2em] uppercase">Email Me</p>
+                <p className="font-sans text-xs font-bold text-accent tracking-[0.2em] uppercase">
+                  Email Me
+                </p>
                 <p className="font-sans text-lg md:text-xl font-bold text-text-primary mt-1 group-hover:text-accent transition-colors">
                   jorgeyaelorga@gmail.com
                 </p>
