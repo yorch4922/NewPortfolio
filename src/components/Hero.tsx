@@ -24,7 +24,7 @@ export default function Hero() {
 
   return (
     <section className="bg-bg py-20 md:py-32 overflow-hidden">
-      <motion.div 
+      <motion.div
         className="container-custom grid md:grid-cols-2 gap-12 items-center"
         variants={containerVariants}
         initial="hidden"
@@ -46,8 +46,8 @@ export default function Hero() {
           </motion.p>
           <motion.div variants={itemVariants} className="pt-4 flex justify-center md:justify-start">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link 
-                href="/jyresume" 
+              <Link
+                href="/jyresume"
                 className="inline-block px-10 py-4 bg-accent text-white rounded font-bold hover:brightness-110 shadow-lg shadow-accent/20 cursor-pointer"
               >
                 View Resume
@@ -57,17 +57,20 @@ export default function Hero() {
         </div>
 
         <motion.div variants={itemVariants} className="order-1 md:order-2 flex justify-center">
-          <motion.div 
+          <motion.div
             whileHover={{ scale: 1.02, rotate: 1 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
             className="relative w-72 h-72 md:w-[480px] md:h-[480px]"
           >
             {/* Gradient/Pattern Background for Image */}
-            <div className="absolute inset-0 rounded-full bg-[#C8BAA8] overflow-hidden border-8 border-white/50 shadow-2xl">
-              <img 
+            <div className="absolute inset-0 rounded-full bg-[#C8BAA8] overflow-hidden border-8 border-white/50 shadow-2xl relative">
+              <Image
                 src="https://5fjjbtb15mr59rsn.public.blob.vercel-storage.com/portfolio_edited%201.png"
                 alt="Jorge Oropeza Portrait"
-                className="w-full h-full object-cover grayscale-0 hover:grayscale-[0.1] transition-all"
+                fill
+                priority
+                sizes="(max-width: 768px) 18rem, 30rem"
+                className="object-cover grayscale-0 hover:grayscale-[0.1] transition-all"
               />
             </div>
           </motion.div>

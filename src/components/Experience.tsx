@@ -99,7 +99,7 @@ export default function Experience() {
           className="mt-16 p-8 bg-accent/5 rounded-2xl border border-accent/10"
         >
           <p className="font-sans text-base md:text-lg text-text-primary leading-relaxed text-center italic">
-            "Over the past several years, I have collaborated with front-end and back-end developers, GIS specialists, and key stakeholders to build user-centered applications — taking on roles as designer, researcher, product owner, and content strategist."
+            &quot;Over the past several years, I have collaborated with front-end and back-end developers, GIS specialists, and key stakeholders to build user-centered applications — taking on roles as designer, researcher, product owner, and content strategist.&quot;
           </p>
         </motion.div>
       </motion.div>

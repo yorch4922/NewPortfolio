@@ -3,9 +3,6 @@ import type { Metadata } from "next";
 import { Nunito, Merriweather } from "next/font/google";
 import "./globals.css";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-
 const nunito = Nunito({
   variable: "--font-nunito",
   subsets: ["latin"],

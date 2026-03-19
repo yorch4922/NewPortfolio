@@ -1,18 +1,13 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   Database,
   Bolt,
   XSquare,
-  Search,
-  PenTool,
   Layers,
-  Layout,
   CheckCircle,
-  ArrowRight
 } from "lucide-react";
 import Footer from "@/components/Footer";
 
@@ -312,7 +307,7 @@ export default function OptimizeGeospatialAnalysis() {
       >
         <div className="space-y-4">
           <motion.span variants={fadeUpVariant} className="text-[#ea580c] font-bold text-sm tracking-widest uppercase">
-              Let's work together on your next project
+              Let&apos;s work together on your next project
           </motion.span>
           <motion.h2 variants={fadeUpVariant} className="font-serif text-5xl md:text-6xl font-black text-[#1e293b] tracking-tight">
               Ready to elevate your digital experience?

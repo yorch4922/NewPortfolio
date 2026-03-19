@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -72,14 +73,20 @@ export default function Projects() {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className="flex flex-col md:flex-row gap-10 bg-bg rounded-3xl p-8 md:p-12 items-center hover:shadow-2xl transition-shadow border border-gray-100/50 group"
             >
-              <div className="w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden shadow-md">
-                <motion.img
+              <div className="w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden shadow-md relative">
+                <motion.div
+                  className="w-full h-full relative"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.6 }}
-                  src={p.image}
-                  alt={p.title}
-                  className="w-full h-full object-cover"
-                />
+                >
+                  <Image
+                    src={p.image}
+                    alt={p.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </motion.div>
               </div>
 
               <div className="w-full md:w-1/2 flex flex-col gap-6">

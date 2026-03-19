@@ -21,7 +21,7 @@ export default function DigitalizingProcedures() {
           Streamlining Urban Development Processes
         </h1>
         <p className="text-text-secondary text-lg md:text-xl max-w-3xl mb-10 leading-relaxed font-light">
-          A comprehensive UX overhaul of Mexico's civil registration services, elevating digital accessibility and generating a frictionless user experience across multiple platforms.
+          A comprehensive UX overhaul of Mexico&apos;s civil registration services, elevating digital accessibility and generating a frictionless user experience across multiple platforms.
         </p>
 
         {/* Role/Impact Badge */}

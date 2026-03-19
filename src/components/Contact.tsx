@@ -30,7 +30,7 @@ export default function Contact() {
           <div className="md:w-1/2 p-10 md:p-16 flex flex-col justify-center gap-10">
             <motion.div variants={itemVariants} className="flex flex-col gap-6">
               <h2 className="font-serif text-5xl md:text-6xl font-bold text-accent leading-tight">
-                Let's work together.
+                Let&apos;s work together.
               </h2>
               <p className="font-sans text-lg md:text-xl text-text-secondary leading-relaxed max-w-md">
                 Have a project in mind? Looking for a partner to build something amazing? Feel free to reach out.

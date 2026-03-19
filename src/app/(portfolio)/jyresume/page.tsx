@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Briefcase, GraduationCap, MapPin, Mail, Globe, Download, ChevronLeft, Palette, BookOpen } from "lucide-react";
+import Image from "next/image";
+import { Briefcase, GraduationCap, MapPin, Mail, Download, ChevronLeft, Palette, BookOpen } from "lucide-react";
 
 export default function ResumePage() {
   return (
@@ -26,11 +27,13 @@ export default function ResumePage() {
           <section className="bg-bg/50 px-8 md:px-16 py-16 md:py-20 flex flex-col md:flex-row gap-12 items-center md:items-start border-b border-gray-100">
             {/* Profile Image / Verification */}
             <div className="relative shrink-0">
-              <div className="w-48 h-48 md:w-56 md:h-56 rounded-full bg-white border-4 border-white shadow-xl overflow-hidden flex items-center justify-center bg-bg">
-                <img
+              <div className="w-48 h-48 md:w-56 md:h-56 rounded-full bg-white border-4 border-white shadow-xl overflow-hidden flex items-center justify-center bg-bg relative">
+                <Image
                   src="https://5fjjbtb15mr59rsn.public.blob.vercel-storage.com/portfolio_edited%201.png"
                   alt="Jorge Oropeza Profile"
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 768px) 12rem, 14rem"
+                  className="object-cover"
                 />
               </div>
               <div className="absolute bottom-4 right-4 w-10 h-10 bg-accent rounded-full border-4 border-white flex items-center justify-center shadow-lg">
@@ -153,7 +156,7 @@ export default function ResumePage() {
                   <div className="bg-bg rounded-2xl p-6 border border-gray-100 flex flex-col gap-4">
                     <BookOpen size={24} className="text-accent" />
                     <div>
-                      <h4 className="font-serif text-lg font-bold text-text-primary leading-tight">Bachelor's in Social Anthropology</h4>
+                      <h4 className="font-serif text-lg font-bold text-text-primary leading-tight">Bachelor&apos;s in Social Anthropology</h4>
                       <p className="font-sans text-xs text-text-secondary mt-1 uppercase tracking-wider">ENAH · 2013-2017</p>
                     </div>
                   </div>
