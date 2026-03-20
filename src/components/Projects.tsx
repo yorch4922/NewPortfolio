@@ -56,7 +56,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-24 bg-card-bg overflow-hidden">
+    <section id="projects" aria-labelledby="projects-title" className="py-24 bg-card-bg overflow-hidden">
       <motion.div
         className="container-custom"
         variants={containerVariants}
@@ -65,7 +65,7 @@ export default function Projects() {
         viewport={{ once: true, margin: "-50px" }}
       >
         <div className="flex flex-col gap-6 mb-16 max-w-2xl">
-          <motion.h2 variants={itemVariants} className="font-serif text-4xl md:text-5xl font-bold text-text-primary">
+          <motion.h2 id="projects-title" variants={itemVariants} className="font-serif text-4xl md:text-5xl font-bold text-text-primary">
             Projects
           </motion.h2>
           <motion.p variants={itemVariants} className="font-sans text-base md:text-lg text-text-secondary leading-relaxed">
@@ -73,68 +73,70 @@ export default function Projects() {
           </motion.p>
         </div>
 
-        <div className="grid gap-16">
-          {projects.map((p, i) => (
-            <motion.div
-              key={i}
+        <ul className="grid gap-16">
+          {projects.map((p) => (
+            <motion.li
+              key={p.title}
               variants={itemVariants}
               whileHover={{ y: -5 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="flex flex-col md:flex-row gap-10 bg-bg rounded-3xl p-8 md:p-12 items-center hover:shadow-2xl transition-shadow border border-gray-100/50 group"
+              className="list-none flex flex-col md:flex-row gap-10 bg-bg rounded-3xl p-8 md:p-12 items-center hover:shadow-2xl transition-shadow border border-gray-100/50 group"
             >
-              <div className="w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden shadow-md relative">
-                <motion.div
-                  className="w-full h-full relative"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <Image
-                    src={p.image}
-                    alt={p.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
-                  />
-                </motion.div>
-              </div>
-
-              <div className="w-full md:w-1/2 flex flex-col gap-6">
-                <span className="font-sans text-xs font-bold tracking-[0.2em] text-accent uppercase bg-accent/5 self-start px-3 py-1 rounded-full">
-                  {p.badge}
-                </span>
-                <h3 className="font-serif text-2xl md:text-3xl font-bold text-text-primary leading-tight">
-                  {p.title}
-                </h3>
-                <p className="font-sans text-base text-text-secondary leading-relaxed">
-                  {p.desc}
-                </p>
-                <div className="pt-4 flex gap-4">
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    {p.isExternal || p.href === "#" ? (
-                      <a
-                        href={p.href}
-                        target={p.isExternal ? "_blank" : undefined}
-                        rel={p.isExternal ? "noopener noreferrer" : undefined}
-                        onClick={() => handleProjectClick(p.title)}
-                        className="inline-block px-6 py-3 bg-accent text-white rounded font-bold hover:brightness-110 shadow-sm transition-colors cursor-pointer"
-                      >
-                        {p.buttonText || "View Project"}
-                      </a>
-                    ) : (
-                      <Link
-                        href={p.href}
-                        onClick={() => handleProjectClick(p.title)}
-                        className="inline-block px-6 py-3 bg-accent text-white rounded font-bold hover:brightness-110 shadow-sm transition-colors cursor-pointer"
-                      >
-                        {p.buttonText || "View Project"}
-                      </Link>
-                    )}
+              <article className="w-full flex flex-col md:flex-row gap-10 items-center">
+                <div className="w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden shadow-md relative">
+                  <motion.div
+                    className="w-full h-full relative"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <Image
+                      src={p.image}
+                      alt={p.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover"
+                    />
                   </motion.div>
                 </div>
-              </div>
-            </motion.div>
+
+                <div className="w-full md:w-1/2 flex flex-col gap-6">
+                  <span className="font-sans text-xs font-bold tracking-[0.2em] text-accent uppercase bg-accent/5 self-start px-3 py-1 rounded-full">
+                    {p.badge}
+                  </span>
+                  <h3 className="font-serif text-2xl md:text-3xl font-bold text-text-primary leading-tight">
+                    {p.title}
+                  </h3>
+                  <p className="font-sans text-base text-text-secondary leading-relaxed">
+                    {p.desc}
+                  </p>
+                  <div className="pt-4 flex gap-4">
+                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                      {p.isExternal ? (
+                        <a
+                          href={p.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => handleProjectClick(p.title)}
+                          className="inline-block px-6 py-3 bg-accent text-white rounded font-bold hover:brightness-110 shadow-sm transition-colors cursor-pointer"
+                        >
+                          {p.buttonText || "View Project"}
+                        </a>
+                      ) : (
+                        <Link
+                          href={p.href}
+                          onClick={() => handleProjectClick(p.title)}
+                          className="inline-block px-6 py-3 bg-accent text-white rounded font-bold hover:brightness-110 shadow-sm transition-colors cursor-pointer"
+                        >
+                          {p.buttonText || "View Project"}
+                        </Link>
+                      )}
+                    </motion.div>
+                  </div>
+                </div>
+              </article>
+            </motion.li>
           ))}
-        </div>
+        </ul>
       </motion.div>
     </section>
   );

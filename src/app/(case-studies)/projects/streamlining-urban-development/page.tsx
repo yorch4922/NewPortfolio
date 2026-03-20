@@ -1,20 +1,19 @@
-"use client";
-
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Users, Zap, Award, PencilRuler, ArrowRightCircle, Database, Layers, Search, CheckCircle } from "lucide-react";
-import Footer from "@/components/Footer";
-import { motion } from "framer-motion";
+
+export const metadata: Metadata = {
+  title: "Streamlining Urban Development | Jorge Oropeza",
+  description:
+    "Case study on redesigning urban development processes for faster, more accessible digital public services.",
+};
 
 export default function DigitalizingProcedures() {
   return (
     <main className="min-h-screen bg-white font-sans text-text-primary">
       {/* Hero Section */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.8 }}
+      <section
         className="pt-40 pb-20 px-6 md:px-20 lg:px-32 flex flex-col items-center text-center max-w-7xl mx-auto">
         <span className="text-accent font-bold text-sm tracking-widest uppercase mb-4">Case Study</span>
         <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
@@ -33,9 +32,7 @@ export default function DigitalizingProcedures() {
         </div>
 
         {/* Mockup Container */}
-        <motion.div
-          whileHover={{ scale: 1.02, rotate: 1 }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        <div
           className="relative w-full max-w-5xl aspect-[1000/500] bg-[#F5F6F7] rounded-3xl overflow-hidden shadow-2xl group"
         >
           <Image
@@ -50,15 +47,11 @@ export default function DigitalizingProcedures() {
             <span className="font-bold text-xl md:text-2xl">100%</span>
             <span className="font-bold text-[8px] md:text-[10px] uppercase tracking-tighter">Paperless Migration</span>
           </div>
-        </motion.div>
-      </motion.section>
+        </div>
+      </section>
 
       {/* Executive Summary / Value Prop */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.8 }}
+      <section
         className="py-24 px-6 md:px-20 lg:px-32 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr,300px] gap-20 lg:gap-32">
         <div className="flex flex-col gap-6">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-text-primary">Value Proposition</h2>
@@ -83,14 +76,10 @@ export default function DigitalizingProcedures() {
             ))}
           </ul>
         </div>
-      </motion.section>
+      </section>
 
       {/* Discovery Phase: Research Insights */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.8 }}
+      <section
         className="py-24 bg-[#F8F9FA] px-6 md:px-20 lg:px-32">
         <div className="max-w-7xl mx-auto flex flex-col gap-12">
           <div className="text-center space-y-4">
@@ -121,19 +110,16 @@ export default function DigitalizingProcedures() {
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* IA & Measurements */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.8 }}
+      <section
+        aria-labelledby="system-architecture-title"
         className="py-24 px-6 md:px-20 lg:px-32 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
         <div className="flex flex-col gap-8 flex-1">
           <div className="space-y-4">
             <span className="text-accent font-bold text-sm tracking-widest uppercase italic">02. Definition Phase</span>
-            <h2 className="font-serif text-3xl md:text-5xl font-bold text-text-primary leading-tight">System Architecture & Impact Metrics</h2>
+            <h2 id="system-architecture-title" className="font-serif text-3xl md:text-5xl font-bold text-text-primary leading-tight">System Architecture & Impact Metrics</h2>
           </div>
           <p className="text-text-secondary text-lg leading-relaxed font-light max-w-xl">
             We mapped out a complex ecosystem involving full system mapping and service data architecture to ensure scalability.
@@ -150,7 +136,7 @@ export default function DigitalizingProcedures() {
           </ul>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 md:gap-6 w-full lg:w-[500px]">
+        <dl className="grid grid-cols-2 gap-4 md:gap-6 w-full lg:w-[500px]">
           {[
             { value: "12", label: "MILLION", sub: "Procedures" },
             { value: "450+", label: "ENTITIES", sub: "Connected" },
@@ -158,74 +144,68 @@ export default function DigitalizingProcedures() {
             { value: "0.4s", label: "AVG LOAD", sub: "Time" }
           ].map((stat, i) => (
             <div key={i} className="bg-[#FDF2E9] p-8 rounded-3xl text-center flex flex-col gap-2 hover:bg-accent hover:text-white transition-all group cursor-default">
-              <span className="text-accent group-hover:text-white text-4xl md:text-5xl font-bold transition-colors">{stat.value}</span>
-              <span className="text-accent group-hover:text-white/80 text-[10px] font-bold uppercase tracking-[0.2em] transition-colors">{stat.label}</span>
-              <span className="text-text-secondary group-hover:text-white/60 text-[10px] font-medium transition-colors uppercase">{stat.sub}</span>
+              <dd className="text-accent group-hover:text-white text-4xl md:text-5xl font-bold transition-colors">{stat.value}</dd>
+              <dt className="flex flex-col">
+                <span className="text-accent group-hover:text-white/80 text-[10px] font-bold uppercase tracking-[0.2em] transition-colors">{stat.label}</span>
+                <span className="text-text-secondary group-hover:text-white/60 text-[10px] font-medium transition-colors uppercase">{stat.sub}</span>
+              </dt>
             </div>
           ))}
-        </div>
-      </motion.section>
+        </dl>
+      </section>
 
       {/* Process Section */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.8 }}
+      <section
+        aria-labelledby="process-implementation-title"
         className="py-24 px-6 md:px-20 lg:px-32 max-w-7xl mx-auto flex flex-col gap-12">
-        <h2 className="text-accent font-bold text-sm tracking-widest uppercase text-center italic">Process & Implementation</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <h2 id="process-implementation-title" className="text-accent font-bold text-sm tracking-widest uppercase text-center italic">Process & Implementation</h2>
+        <ul className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             { icon: <Search className="w-6 h-6" />, title: "UX RESEARCH", desc: "In-depth analysis of existing government workflows and identifying pain points in manual procedures." },
             { icon: <PencilRuler className="w-6 h-6" />, title: "UI DESIGN", desc: "Creating a clean, accessible interface that works across all devices and user skill levels." },
             { icon: <CheckCircle className="w-6 h-6" />, title: "TESTING", desc: "Rigorous usability testing with both citizens and government personnel to ensure efficiency." }
           ].map((item, idx) => (
-            <div key={idx} className="border-2 border-accent/10 p-10 rounded-3xl flex flex-col gap-6 hover:border-accent/40 hover:bg-accent/[0.02] transition-all duration-300">
-              <div className="text-accent">{item.icon}</div>
-              <h3 className="text-accent font-bold text-2xl tracking-tight">{item.title}</h3>
-              <p className="text-text-secondary leading-relaxed text-base font-light">{item.desc}</p>
-            </div>
+            <li key={idx} className="list-none border-2 border-accent/10 p-10 rounded-3xl flex flex-col gap-6 hover:border-accent/40 hover:bg-accent/[0.02] transition-all duration-300">
+              <article>
+                <div className="text-accent">{item.icon}</div>
+                <h3 className="text-accent font-bold text-2xl tracking-tight">{item.title}</h3>
+                <p className="text-text-secondary leading-relaxed text-base font-light">{item.desc}</p>
+              </article>
+            </li>
           ))}
-        </div>
-      </motion.section>
+        </ul>
+      </section>
 
       {/* Community Development Section */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.8 }}
+      <section
+        aria-labelledby="operations-analysis-title"
         className="py-24 bg-white px-6 md:px-20 lg:px-32 max-w-7xl mx-auto flex flex-col gap-10">
         <div className="flex flex-col lg:flex-row justify-between items-end gap-8">
           <div className="flex flex-col gap-4 max-w-2xl">
             <span className="text-accent font-bold text-sm tracking-widest uppercase italic">UX & ARCHITECTURE ANALYSIS</span>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary">Empowering Internal Operations</h2>
+            <h2 id="operations-analysis-title" className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary">Empowering Internal Operations</h2>
             <p className="text-text-secondary text-lg leading-relaxed font-light">
               The development of internal tools for government officials to efficiently manage citizen data and requests.
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <ul className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {[
             { icon: <ArrowRightCircle className="w-6 h-6" />, text: "Streamline workflow" },
             { icon: <Database className="w-6 h-6" />, text: "Data Integrity" },
             { icon: <Layers className="w-6 h-6" />, text: "Scale Efficiency" }
           ].map((item, idx) => (
-            <div key={idx} className="flex items-center gap-4 py-4">
+            <li key={idx} className="list-none flex items-center gap-4 py-4">
               <div className="text-accent shrink-0">{item.icon}</div>
               <span className="text-text-primary font-bold text-lg">{item.text}</span>
-            </div>
+            </li>
           ))}
-        </div>
-      </motion.section>
+        </ul>
+      </section>
 
       {/* Feature Deep-Dive 1 */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.8 }}
+      <section
         className="py-24 bg-[#FDF2E9] px-6 md:px-20 lg:px-32">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
           <div className="flex flex-col gap-8 flex-1">
@@ -245,14 +225,10 @@ export default function DigitalizingProcedures() {
             />
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Feature Deep-Dive 2 */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.8 }}
+      <section
         className="py-24 px-6 md:px-20 lg:px-32 bg-white">
         <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-32">
           <div className="w-full lg:w-1/2 rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-white">
@@ -283,41 +259,36 @@ export default function DigitalizingProcedures() {
             </ul>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Lessons Learned */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.8 }}
+      <section
+        aria-labelledby="lessons-learned-title"
         className="py-24 bg-[#F8F9FA] px-6 md:px-20 lg:px-32">
         <div className="max-w-7xl mx-auto flex flex-col gap-16">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-text-primary text-center">What I Learned From This?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <h2 id="lessons-learned-title" className="font-serif text-4xl md:text-5xl font-bold text-text-primary text-center">What I Learned From This?</h2>
+          <ul className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {[
               { icon: <Award className="w-8 h-8" />, title: "Industry Standards", desc: "Understanding the balance between legacy government requirements and modern digital standards." },
               { icon: <Users className="w-8 h-8" />, title: "User-Centric", desc: "The importance of accessibility for a diverse user base with varying levels of digital literacy." },
               { icon: <PencilRuler className="w-8 h-8" />, title: "Methodology", desc: "Refining a scalable design system that can be adapted for multiple government entities." }
             ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center text-center gap-6 group">
-                <div className="w-20 h-20 rounded-3xl bg-white shadow-sm flex items-center justify-center group-hover:shadow-xl group-hover:-translate-y-2 transition-all duration-300">
-                  <div className="text-accent">{item.icon}</div>
-                </div>
-                <h3 className="text-2xl font-bold text-text-primary">{item.title}</h3>
-                <p className="text-text-secondary text-sm font-light leading-relaxed max-w-xs">{item.desc}</p>
-              </div>
+              <li key={i} className="list-none">
+                <article className="flex flex-col items-center text-center gap-6 group">
+                  <div className="w-20 h-20 rounded-3xl bg-white shadow-sm flex items-center justify-center group-hover:shadow-xl group-hover:-translate-y-2 transition-all duration-300">
+                    <div className="text-accent">{item.icon}</div>
+                  </div>
+                  <h3 className="text-2xl font-bold text-text-primary">{item.title}</h3>
+                  <p className="text-text-secondary text-sm font-light leading-relaxed max-w-xs">{item.desc}</p>
+                </article>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
-      </motion.section>
+      </section>
 
       {/* Final CTA */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.8 }}
+      <section
         className="py-40 px-6 text-center max-w-5xl mx-auto flex flex-col items-center gap-12">
         <div className="space-y-6">
           <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl font-black text-accent tracking-tighter uppercase leading-none">Liked this project?</h2>
@@ -333,9 +304,9 @@ export default function DigitalizingProcedures() {
             My next project
           </Link>
         </div>
-      </motion.section>
-
-      <Footer />
+      </section>
     </main>
   );
 }
+
+
