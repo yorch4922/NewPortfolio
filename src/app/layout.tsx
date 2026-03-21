@@ -1,8 +1,12 @@
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { Nunito, Merriweather } from "next/font/google";
-import Script from "next/script";
+import dynamic from "next/dynamic";
 import "./globals.css";
+
+const CookieConsent = dynamic(() => import("@/components/CookieConsent"), {
+  ssr: false,
+});
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -27,19 +31,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Script id="microsoft-clarity" strategy="afterInteractive">
-        {`
-          (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-          })(window, document, "clarity", "script", "vysxj4i9qm");
-        `}
-      </Script>
       <body
         className={`${nunito.variable} ${merriweather.variable} font-sans antialiased`}
       >
         {children}
+        <CookieConsent />
         <Analytics />
       </body>
     </html>
