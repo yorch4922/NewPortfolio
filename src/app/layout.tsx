@@ -1,12 +1,9 @@
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { Nunito, Merriweather } from "next/font/google";
-import dynamic from "next/dynamic";
+import { cookies } from "next/headers";
+import CookieConsent from "@/components/CookieConsent";
 import "./globals.css";
-
-const CookieConsent = dynamic(() => import("@/components/CookieConsent"), {
-  ssr: false,
-});
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -24,18 +21,25 @@ export const metadata: Metadata = {
   description: "UX Design with an Anthropological Touch. Portfolio of Jorge Oropeza, a specialist in participatory design and qualitative research.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const storedConsent = cookieStore.get("analytics-consent")?.value;
+  const initialConsent =
+    storedConsent === "granted" || storedConsent === "denied"
+      ? storedConsent
+      : null;
+
   return (
     <html lang="en">
       <body
         className={`${nunito.variable} ${merriweather.variable} font-sans antialiased`}
       >
         {children}
-        <CookieConsent />
+        <CookieConsent initialConsent={initialConsent} />
         <Analytics />
       </body>
     </html>

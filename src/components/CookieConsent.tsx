@@ -3,21 +3,17 @@
 import { useState } from "react";
 import Script from "next/script";
 
-const CONSENT_KEY = "cookie-consent-analytics";
-
 type ConsentState = "granted" | "denied" | null;
 
-export default function CookieConsent() {
-  const [consent, setConsent] = useState<ConsentState>(() => {
-    const storedValue = window.localStorage.getItem(CONSENT_KEY);
-    if (storedValue === "granted" || storedValue === "denied") {
-      return storedValue;
-    }
-    return null;
-  });
+type CookieConsentProps = {
+  initialConsent: ConsentState;
+};
+
+export default function CookieConsent({ initialConsent }: CookieConsentProps) {
+  const [consent, setConsent] = useState<ConsentState>(initialConsent);
 
   const handleConsent = (nextConsent: Exclude<ConsentState, null>) => {
-    window.localStorage.setItem(CONSENT_KEY, nextConsent);
+    document.cookie = `analytics-consent=${nextConsent}; path=/; max-age=31536000; samesite=lax`;
     setConsent(nextConsent);
   };
 
@@ -39,7 +35,7 @@ export default function CookieConsent() {
         <div className="fixed inset-x-0 bottom-0 z-[60] border-t border-gray-200 bg-white/95 backdrop-blur-sm">
           <div className="container-custom py-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
             <p className="text-sm text-text-primary">
-              Este sitio monitorea el comportamiento de navegación para mejorar la experiencia de usuario. Puedes aceptar o rechazar cookies analíticas.
+              Este sitio monitorea el comportamiento de navegacion para mejorar la experiencia de usuario. Puedes aceptar o rechazar cookies analiticas.
             </p>
             <div className="flex items-center gap-2">
               <button
@@ -54,7 +50,7 @@ export default function CookieConsent() {
                 onClick={() => handleConsent("granted")}
                 className="px-4 py-2 rounded-lg bg-accent text-white text-sm font-bold hover:brightness-110 transition-all"
               >
-                Aceptar analíticas
+                Aceptar analiticas
               </button>
             </div>
           </div>
