@@ -3,9 +3,12 @@
 import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
 
+const CONTACT_EMAIL = "jorgeyaelorga@gmail.com";
+
 export default function Contact() {
   const [statusMessage, setStatusMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [fallbackMailtoUrl, setFallbackMailtoUrl] = useState<string | null>(null);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -37,6 +40,7 @@ export default function Contact() {
 
     setIsSubmitting(true);
     setStatusMessage("");
+    setFallbackMailtoUrl(null);
 
     try {
       const response = await fetch("/api/contact", {
@@ -49,6 +53,8 @@ export default function Contact() {
 
       const data = (await response.json().catch(() => ({}))) as {
         error?: string;
+        fallback?: "mailto";
+        mailtoUrl?: string;
       };
 
       if (!response.ok) {
@@ -56,12 +62,35 @@ export default function Contact() {
         return;
       }
 
+      if (data.fallback === "mailto" && data.mailtoUrl) {
+        setFallbackMailtoUrl(data.mailtoUrl);
+        setStatusMessage(
+          "Email service is in fallback mode. Your email app should open with your message pre-filled. Use 'Open email app' if nothing happens.",
+        );
+        window.location.href = data.mailtoUrl;
+        form.reset();
+        return;
+      }
+
+      setFallbackMailtoUrl(null);
       setStatusMessage("Thanks. Your message has been sent.");
       form.reset();
     } catch {
       setStatusMessage("A network error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleEmailMeClick = async () => {
+    setStatusMessage("Opening your email app...");
+    setFallbackMailtoUrl(`mailto:${CONTACT_EMAIL}`);
+
+    try {
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
+      setStatusMessage("Opening your email app... Email address copied to clipboard.");
+    } catch {
+      setStatusMessage("Opening your email app...");
     }
   };
 
@@ -89,14 +118,15 @@ export default function Contact() {
             <motion.div variants={itemVariants} className="flex flex-col gap-6">
               <motion.a
                 whileHover={{ x: 5 }}
-                href="mailto:jorgeyaelorga@gmail.com"
+                href={`mailto:${CONTACT_EMAIL}`}
+                onClick={handleEmailMeClick}
                 className="flex flex-col group cursor-pointer"
               >
                 <p className="font-sans text-xs font-bold text-accent tracking-[0.2em] uppercase">
                   Email Me
                 </p>
                 <p className="font-sans text-lg md:text-xl font-bold text-text-primary mt-1 group-hover:text-accent transition-colors">
-                  jorgeyaelorga@gmail.com
+                  {CONTACT_EMAIL}
                 </p>
               </motion.a>
 
@@ -179,9 +209,17 @@ export default function Contact() {
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </motion.button>
 
-                <p id="contact-form-status" role="status" aria-live="polite" className="font-sans text-sm text-text-secondary min-h-5">
-                  {statusMessage}
-                </p>
+                <div id="contact-form-status" role="status" aria-live="polite" className="font-sans text-sm text-text-secondary min-h-5">
+                  <p>{statusMessage}</p>
+                  {fallbackMailtoUrl && (
+                    <a
+                      href={fallbackMailtoUrl}
+                      className="inline-block mt-2 text-accent font-bold hover:underline"
+                    >
+                      Open email app
+                    </a>
+                  )}
+                </div>
               </form>
             </div>
           </motion.div>

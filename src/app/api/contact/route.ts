@@ -9,6 +9,19 @@ function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+function buildMailtoUrl(params: {
+  toEmail: string;
+  name: string;
+  email: string;
+  message: string;
+}) {
+  const { toEmail, name, email, message } = params;
+  const subject = `Portfolio inquiry from ${name}`;
+  const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+  const query = new URLSearchParams({ subject, body }).toString();
+  return `mailto:${toEmail}?${query}`;
+}
+
 export async function POST(request: Request) {
   let payload: unknown;
 
@@ -57,13 +70,12 @@ export async function POST(request: Request) {
   const fromEmail = process.env.CONTACT_FROM_EMAIL ?? DEFAULT_FROM_EMAIL;
 
   if (!resendApiKey) {
-    return NextResponse.json(
-      {
-        error:
-          "Contact service is not configured yet. Please set RESEND_API_KEY.",
-      },
-      { status: 503 },
-    );
+    return NextResponse.json({
+      ok: true,
+      delivered: false,
+      fallback: "mailto",
+      mailtoUrl: buildMailtoUrl({ toEmail, name, email, message }),
+    });
   }
 
   const subject = `Portfolio inquiry from ${name}`;
