@@ -227,14 +227,28 @@ export default function OptimizeGeospatialAnalysis() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
             <figure
-              className="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-xl bg-[#1e293b] flex items-center justify-center border border-gray-200 p-8 text-center text-sm font-light text-white"
+              className="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-xl bg-white border border-gray-200"
             >
-              <figcaption>Dark Theme Dashboard Mockup Placeholder</figcaption>
+              <div className="relative w-full h-full">
+                <Image
+                  src="https://5fjjbtb15mr59rsn.public.blob.vercel-storage.com/AMRT%20Final.svg"
+                  alt="AMRT final dashboard interface"
+                  fill
+                  className="object-contain"
+                />
+              </div>
             </figure>
             <figure
-              className="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-xl bg-green-100 flex items-center justify-center border border-gray-200 p-8 text-center text-sm font-light text-green-800"
+              className="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-xl bg-white border border-gray-200"
             >
-              <figcaption>Map Interface Mockup Placeholder</figcaption>
+              <div className="relative w-full h-full">
+                <Image
+                  src="https://5fjjbtb15mr59rsn.public.blob.vercel-storage.com/AAMRTFinl.svg"
+                  alt="AMRT final map interface"
+                  fill
+                  className="object-contain"
+                />
+              </div>
             </figure>
           </div>
         </div>
@@ -327,6 +341,5 @@ export default function OptimizeGeospatialAnalysis() {
     </main>
   );
 }
-
 
 
