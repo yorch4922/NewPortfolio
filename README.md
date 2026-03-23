@@ -23,12 +23,59 @@ The contact form submits to `POST /api/contact`.
 Create a `.env.local` file with:
 
 ```bash
-RESEND_API_KEY=your_resend_api_key
 CONTACT_TO_EMAIL=jorgeyaelorga@gmail.com
 CONTACT_FROM_EMAIL="Portfolio Contact <onboarding@resend.dev>"
+CONTACT_WEBHOOK_URL=your_webhook_url
+CONTACT_WEBHOOK_SECRET=your_shared_secret
+CONTACT_WEBHOOK_TIMEOUT_MS=10000
+RESEND_API_KEY=your_resend_api_key
 ```
 
-If `RESEND_API_KEY` is missing, the API returns `503` and the UI shows a configuration message.
+Delivery behavior:
+
+- If `CONTACT_WEBHOOK_URL` is set, each message is sent there (ideal for Google Sheets).
+- If `RESEND_API_KEY` is set, an email notification is also sent.
+- If both are set, both channels are attempted.
+- If neither is set, UI falls back to `mailto`.
+
+### Google Sheets via Apps Script webhook
+
+1. Create a Google Sheet with columns like:
+   `submittedAt | name | email | message | source | userAgent | ip`
+2. Open `Extensions -> Apps Script` and paste this:
+
+```javascript
+const SHEET_NAME = "Leads";
+const WEBHOOK_SECRET = "replace-with-your-shared-secret";
+
+function doPost(e) {
+  const secret = e?.parameter?.secret;
+  if (WEBHOOK_SECRET && secret !== WEBHOOK_SECRET) {
+    return ContentService.createTextOutput(JSON.stringify({ ok: false, error: "Unauthorized" }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  const payload = JSON.parse(e.postData.contents || "{}");
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+
+  sheet.appendRow([
+    payload.submittedAt || new Date().toISOString(),
+    payload.name || "",
+    payload.email || "",
+    payload.message || "",
+    payload.source || "",
+    payload.userAgent || "",
+    payload.ip || "",
+  ]);
+
+  return ContentService.createTextOutput(JSON.stringify({ ok: true }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+```
+
+3. Deploy as `Web app` with access `Anyone with the link`.
+4. Use that URL as `CONTACT_WEBHOOK_URL`.
+5. Set the same value in `CONTACT_WEBHOOK_SECRET`.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 

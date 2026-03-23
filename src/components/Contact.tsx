@@ -65,7 +65,7 @@ export default function Contact() {
       if (data.fallback === "mailto" && data.mailtoUrl) {
         setFallbackMailtoUrl(data.mailtoUrl);
         setStatusMessage(
-          "Email service is in fallback mode. Your email app should open with your message pre-filled. Use 'Open email app' if nothing happens.",
+          "Contact service is in fallback mode. Your email app should open with your message pre-filled. Use 'Open email app' if nothing happens.",
         );
         window.location.href = data.mailtoUrl;
         form.reset();
