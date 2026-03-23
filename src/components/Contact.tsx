@@ -1,22 +1,97 @@
 "use client";
 
+import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
 
 const CONTACT_EMAIL = "jorgeyaelorga@gmail.com";
-const LINKEDIN_URL = "https://www.linkedin.com/in/jyoropeza/";
 
 export default function Contact() {
+  const [statusMessage, setStatusMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [fallbackMailtoUrl, setFallbackMailtoUrl] = useState<string | null>(null);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.2 },
-    },
+      transition: { staggerChildren: 0.2 }
+    }
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+  };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const name = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const message = String(formData.get("message") ?? "").trim();
+    const company = String(formData.get("company") ?? "").trim();
+
+    if (!name || !email || !message) {
+      setStatusMessage("Please complete name, email, and message before submitting.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setStatusMessage("");
+    setFallbackMailtoUrl(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, message, company }),
+      });
+
+      const data = (await response.json().catch(() => ({}))) as {
+        error?: string;
+        fallback?: "mailto";
+        mailtoUrl?: string;
+      };
+
+      if (!response.ok) {
+        setStatusMessage(data.error ?? "Unable to send your message right now.");
+        return;
+      }
+
+      if (data.fallback === "mailto" && data.mailtoUrl) {
+        setFallbackMailtoUrl(data.mailtoUrl);
+        setStatusMessage(
+          "Contact service is in fallback mode. Your email app should open with your message pre-filled. Use 'Open email app' if nothing happens.",
+        );
+        window.location.href = data.mailtoUrl;
+        form.reset();
+        return;
+      }
+
+      setFallbackMailtoUrl(null);
+      setStatusMessage("Thanks. Your message has been sent.");
+      form.reset();
+    } catch {
+      setStatusMessage("A network error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleEmailMeClick = async () => {
+    setStatusMessage("Opening your email app...");
+    setFallbackMailtoUrl(`mailto:${CONTACT_EMAIL}`);
+
+    try {
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
+      setStatusMessage("Opening your email app... Email address copied to clipboard.");
+    } catch {
+      setStatusMessage("Opening your email app...");
+    }
   };
 
   return (
@@ -28,7 +103,8 @@ export default function Contact() {
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
       >
-        <div className="bg-bg rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row min-h-[520px] border border-gray-100">
+        <div className="bg-bg rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row min-h-[600px] border border-gray-100">
+          {/* Left Column: Heading & Actions */}
           <div className="md:w-1/2 p-10 md:p-16 flex flex-col justify-center gap-10">
             <motion.div variants={itemVariants} className="flex flex-col gap-6">
               <h2 className="font-serif text-5xl md:text-6xl font-bold text-accent leading-tight">
@@ -43,6 +119,7 @@ export default function Contact() {
               <motion.a
                 whileHover={{ x: 5 }}
                 href={`mailto:${CONTACT_EMAIL}`}
+                onClick={handleEmailMeClick}
                 className="flex flex-col group cursor-pointer"
               >
                 <p className="font-sans text-xs font-bold text-accent tracking-[0.2em] uppercase">
@@ -55,14 +132,12 @@ export default function Contact() {
 
               <motion.a
                 whileHover={{ x: 5 }}
-                href={LINKEDIN_URL}
+                href="https://www.linkedin.com/in/jyoropeza/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex flex-col group"
               >
-                <p className="font-sans text-xs font-bold text-accent tracking-[0.2em] uppercase">
-                  LinkedIn
-                </p>
+                <p className="font-sans text-xs font-bold text-accent tracking-[0.2em] uppercase">LinkedIn</p>
                 <p className="font-sans text-lg md:text-xl font-bold text-text-primary mt-1 group-hover:text-accent transition-colors">
                   Jorge Oropeza
                 </p>
@@ -70,33 +145,82 @@ export default function Contact() {
             </motion.div>
           </div>
 
+          {/* Right Column: Form Card */}
           <motion.div variants={itemVariants} className="md:w-1/2 p-6 md:p-12 bg-bg flex items-center justify-center">
             <div className="bg-white rounded-3xl p-8 md:p-12 w-full max-w-md shadow-xl border border-gray-50">
-              <p className="font-sans text-sm uppercase tracking-[0.2em] font-bold text-accent mb-4">
-                Contact
-              </p>
-              <h3 className="font-serif text-3xl font-bold text-text-primary mb-4">
-                Contact form is temporarily unavailable
-              </h3>
-              <p className="font-sans text-text-secondary leading-relaxed mb-8">
-                Please email me directly or send a message on LinkedIn while I finalize a more reliable form flow.
-              </p>
-              <div className="flex flex-col gap-3">
-                <a
-                  href={`mailto:${CONTACT_EMAIL}`}
-                  className="w-full text-center bg-accent text-white font-bold py-4 rounded-xl shadow-lg shadow-accent/20 transition-colors hover:brightness-110"
+              <form onSubmit={handleSubmit} className="flex flex-col gap-6" aria-describedby="contact-form-status">
+                <div className="absolute -left-[9999px]" aria-hidden="true">
+                  <label htmlFor="company">Company</label>
+                  <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="name" className="font-sans text-sm font-bold text-text-secondary">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Your Name"
+                    autoComplete="name"
+                    required
+                    className="w-full px-4 py-3 bg-[#F9FAFB] border border-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all font-sans text-text-primary"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="email" className="font-sans text-sm font-bold text-text-secondary">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="your@email.com"
+                    autoComplete="email"
+                    required
+                    className="w-full px-4 py-3 bg-[#F9FAFB] border border-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all font-sans text-text-primary"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="message" className="font-sans text-sm font-bold text-text-secondary">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={4}
+                    placeholder="Tell me about your project..."
+                    minLength={10}
+                    required
+                    className="w-full px-4 py-3 bg-[#F9FAFB] border border-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all font-sans resize-none text-text-primary"
+                  ></textarea>
+                </div>
+
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-accent text-white font-bold py-4 rounded-xl shadow-lg shadow-accent/20 mt-2 transition-colors hover:brightness-110 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  Email Me
-                </a>
-                <a
-                  href={LINKEDIN_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full text-center border border-gray-200 text-text-primary font-bold py-4 rounded-xl transition-colors hover:bg-gray-50"
-                >
-                  Message on LinkedIn
-                </a>
-              </div>
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                </motion.button>
+
+                <div id="contact-form-status" role="status" aria-live="polite" className="font-sans text-sm text-text-secondary min-h-5">
+                  <p>{statusMessage}</p>
+                  {fallbackMailtoUrl && (
+                    <a
+                      href={fallbackMailtoUrl}
+                      className="inline-block mt-2 text-accent font-bold hover:underline"
+                    >
+                      Open email app
+                    </a>
+                  )}
+                </div>
+              </form>
             </div>
           </motion.div>
         </div>
