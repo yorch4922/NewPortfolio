@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function OptimizeGeospatialAnalysis() {
   return (
-    <main className="min-h-screen bg-white font-sans text-text-primary">
+    <main id="main-content" className="min-h-screen bg-white font-sans text-text-primary">
       {/* Hero Section */}
       <section
         aria-labelledby="optimize-geospatial-analysis-title"
@@ -341,5 +341,6 @@ export default function OptimizeGeospatialAnalysis() {
     </main>
   );
 }
+
 
 

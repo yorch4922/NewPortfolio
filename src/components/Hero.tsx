@@ -23,7 +23,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="bg-bg py-20 md:py-32 overflow-hidden">
+    <section aria-labelledby="hero-title" className="bg-bg py-20 md:py-32 overflow-hidden">
       <motion.div
         className="container-custom grid md:grid-cols-2 gap-12 items-center"
         variants={containerVariants}
@@ -35,7 +35,7 @@ export default function Hero() {
           <motion.span variants={itemVariants} className="font-sans text-xs md:text-sm font-semibold tracking-[0.2em] text-accent uppercase">
             UX Designer & Researcher
           </motion.span>
-          <motion.h1 variants={itemVariants} className="font-serif text-5xl md:text-7xl font-bold leading-tight text-accent">
+          <motion.h1 id="hero-title" variants={itemVariants} className="font-serif text-5xl md:text-7xl font-bold leading-tight text-accent">
             Jorge<br />Oropeza
           </motion.h1>
           <motion.h2 variants={itemVariants} className="font-serif text-2xl md:text-3xl text-text-primary leading-snug">

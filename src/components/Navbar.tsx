@@ -47,7 +47,7 @@ export default function Navbar() {
   }, [isOpen]);
 
   return (
-    <nav className={`sticky top-0 z-50 transition-all duration-300 ${
+    <nav aria-label="Primary" className={`sticky top-0 z-50 transition-all duration-300 ${
       isScrolled 
         ? "bg-white/90 backdrop-blur-md border-b border-gray-200 py-3" 
         : "bg-white border-b border-transparent py-5"
@@ -55,6 +55,7 @@ export default function Navbar() {
       <div className="container-custom flex justify-between items-center">
         <Link 
           href="/" 
+          aria-label="Go to homepage"
           className="font-serif font-bold text-xl tracking-[0.15em] text-accent hover:opacity-80 transition-opacity"
         >
           JORGE OROPEZA
@@ -69,7 +70,7 @@ export default function Navbar() {
                 className="font-sans text-sm font-bold text-text-primary hover:text-accent transition-all relative group"
               >
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full" />
+                <span aria-hidden="true" className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full" />
               </Link>
             </li>
           ))}
@@ -101,6 +102,7 @@ export default function Navbar() {
       {isOpen && (
         <div
           id={mobileMenuId}
+          aria-label="Mobile menu"
           className="md:hidden absolute top-full left-0 w-full bg-white border-b border-gray-100 py-10 animate-in fade-in slide-in-from-top-4 shadow-xl"
         >
           <ul className="flex flex-col items-center gap-8">

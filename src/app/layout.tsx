@@ -38,6 +38,9 @@ export default async function RootLayout({
       <body
         className={`${nunito.variable} ${merriweather.variable} font-sans antialiased`}
       >
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         {children}
         <CookieConsent initialConsent={initialConsent} />
         <Analytics />

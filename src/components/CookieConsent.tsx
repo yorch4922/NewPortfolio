@@ -32,25 +32,36 @@ export default function CookieConsent({ initialConsent }: CookieConsentProps) {
       )}
 
       {consent === null && (
-        <div className="fixed inset-x-0 bottom-0 z-[60] border-t border-gray-200 bg-white/95 backdrop-blur-sm">
+        <div
+          role="dialog"
+          aria-modal="false"
+          aria-labelledby="cookie-consent-title"
+          aria-describedby="cookie-consent-description"
+          className="fixed inset-x-0 bottom-0 z-[60] border-t border-gray-200 bg-white/95 backdrop-blur-sm"
+        >
           <div className="container-custom py-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <p className="text-sm text-text-primary">
-              Este sitio monitorea el comportamiento de navegacion para mejorar la experiencia de usuario. Puedes aceptar o rechazar cookies analiticas.
-            </p>
+            <div className="space-y-1">
+              <p id="cookie-consent-title" className="text-sm font-bold text-text-primary">
+                Analytics preferences
+              </p>
+              <p id="cookie-consent-description" className="text-sm text-text-primary">
+                This site uses analytics cookies to improve usability. You can accept or reject analytics tracking.
+              </p>
+            </div>
             <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={() => handleConsent("denied")}
                 className="px-4 py-2 rounded-lg border border-gray-300 text-sm font-bold text-text-primary hover:bg-gray-50 transition-colors"
               >
-                Rechazar
+                Reject
               </button>
               <button
                 type="button"
                 onClick={() => handleConsent("granted")}
                 className="px-4 py-2 rounded-lg bg-accent text-white text-sm font-bold hover:brightness-110 transition-all"
               >
-                Aceptar analiticas
+                Accept analytics
               </button>
             </div>
           </div>

@@ -10,7 +10,7 @@ export default function Projects() {
     {
       title: "Optimize geospatial analysis: A couple of clicks to get crucial Information",
       badge: "GIS & Mapping",
-      desc: "Designed and deployed a mapping application that empowers municipal staff to instantly access critical risk data and generate custom geographic layers—drastically reducing manual workload and democratizing data accessibility.",
+      desc: "Designed and deployed a mapping application that empowers municipal staff to instantly access critical risk data and generate custom geographic layers-drastically reducing manual workload and democratizing data accessibility.",
       image: "https://5fjjbtb15mr59rsn.public.blob.vercel-storage.com/%C3%81reaTrabajo_Inicio%201.png",
       href: "/projects/optimize-geospatial-analysis"
     },
@@ -22,7 +22,7 @@ export default function Projects() {
       href: "/projects/streamlining-urban-development"
     },
     {
-      title: "Bachelor's Thesis — Graffiti in Nezahualcoyotl",
+      title: "Bachelor's Thesis - Graffiti in Nezahualcoyotl",
       badge: "Anthropological Research",
       desc: "A qualitative research project on graffiti in the municipality of Nezahualcoyotl, combining urban and art anthropology with ethnographic fieldwork, structured interviews, and participatory observation methods.",
       image: "https://5fjjbtb15mr59rsn.public.blob.vercel-storage.com/imagen%208%20%281%29.png",
@@ -116,6 +116,7 @@ export default function Projects() {
                           href={p.href}
                           target="_blank"
                           rel="noopener noreferrer"
+                          aria-label={`${p.buttonText || "View Project"} (opens in new tab)`}
                           onClick={() => handleProjectClick(p.title)}
                           className="inline-block px-6 py-3 bg-accent text-white rounded font-bold hover:brightness-110 shadow-sm transition-colors cursor-pointer"
                         >
@@ -141,3 +142,6 @@ export default function Projects() {
     </section>
   );
 }
+
+
+

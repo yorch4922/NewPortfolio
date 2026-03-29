@@ -25,6 +25,18 @@ body {
   @apply antialiased;
 }
 
+a,
+button,
+input,
+textarea,
+select {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 focus-visible:ring-offset-2 focus-visible:ring-offset-white;
+}
+
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -39,5 +51,15 @@ body {
 @layer components {
   .container-custom {
     @apply mx-auto px-6 max-w-7xl;
+  }
+
+  .skip-link {
+    @apply fixed left-4 top-4 z-[100] rounded-md bg-white px-4 py-2 text-sm font-bold text-text-primary shadow-lg ring-1 ring-gray-200;
+    transform: translateY(-150%);
+    transition: transform 0.2s ease;
+  }
+
+  .skip-link:focus-visible {
+    transform: translateY(0);
   }
 }

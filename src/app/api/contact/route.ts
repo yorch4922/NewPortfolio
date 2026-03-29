@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const DEFAULT_TO_EMAIL = "jorgeyaelorga@gmail.com";
+const DEFAULT_TO_EMAIL = "jorgeyaelorga@gmail.com"
 const DEFAULT_FROM_EMAIL = "Portfolio Contact <onboarding@resend.dev>";
 const MAX_NAME_LENGTH = 120;
 const MAX_MESSAGE_LENGTH = 4000;

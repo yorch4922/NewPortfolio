@@ -4,7 +4,7 @@ import { Briefcase, GraduationCap, MapPin, Mail, Download, ChevronLeft, Palette,
 
 export default function ResumePage() {
   return (
-    <main className="min-h-screen bg-bg selection:bg-accent/30 selection:text-accent pb-20">
+    <main id="main-content" className="min-h-screen bg-bg selection:bg-accent/30 selection:text-accent pb-20">
       <div className="container-custom py-12">
         <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100 flex flex-col">
 
@@ -113,8 +113,8 @@ export default function ResumePage() {
                     <div className="absolute top-0 -left-1 w-2 h-2 rounded-full bg-accent" />
                     <div className="flex flex-col gap-2">
                       <h3 className="font-serif text-2xl font-bold text-text-primary">UI/UX Designer</h3>
-                      <p className="font-sans font-medium text-accent">Instituto Metropolitano de Planeación de Tijuana</p>
-                      <p className="font-sans text-xs text-text-secondary mb-4 uppercase tracking-wider">September 2022 — Present</p>
+                      <p className="font-sans font-medium text-accent">Instituto Metropolitano de Planeacion de Tijuana</p>
+                      <p className="font-sans text-xs text-text-secondary mb-4 uppercase tracking-wider">September 2022 - Present</p>
                       <ul className="flex flex-col gap-4 font-sans text-text-secondary leading-relaxed text-[15px]">
                         <li className="flex gap-4 items-start">
                           <span className="text-accent mt-1.5 w-1 h-1 bg-accent rounded-full shrink-0" />
@@ -150,14 +150,14 @@ export default function ResumePage() {
                     <Palette size={24} className="text-accent" />
                     <div>
                       <h4 className="font-serif text-lg font-bold text-text-primary leading-tight">Google UX Design Professional Certificate</h4>
-                      <p className="font-sans text-xs text-text-secondary mt-1 uppercase tracking-wider">Coursera · August 2024</p>
+                      <p className="font-sans text-xs text-text-secondary mt-1 uppercase tracking-wider">Coursera - August 2024</p>
                     </div>
                   </div>
                   <div className="bg-bg rounded-2xl p-6 border border-gray-100 flex flex-col gap-4">
                     <BookOpen size={24} className="text-accent" />
                     <div>
                       <h4 className="font-serif text-lg font-bold text-text-primary leading-tight">Bachelor&apos;s in Social Anthropology</h4>
-                      <p className="font-sans text-xs text-text-secondary mt-1 uppercase tracking-wider">ENAH · 2013-2017</p>
+                      <p className="font-sans text-xs text-text-secondary mt-1 uppercase tracking-wider">ENAH - 2013-2017</p>
                     </div>
                   </div>
                 </div>
@@ -246,7 +246,7 @@ export default function ResumePage() {
           {/* Footer of the CV Card */}
           <div className="px-8 py-10 bg-bg border-t border-gray-100 flex flex-col items-center justify-center">
             <p className="font-sans text-[9px] font-bold text-text-secondary uppercase tracking-[0.3em] opacity-60">
-              © {new Date().getFullYear()} JORGE OROPEZA
+              (c) {new Date().getFullYear()} JORGE OROPEZA
             </p>
           </div>
 
@@ -255,3 +255,4 @@ export default function ResumePage() {
     </main>
   );
 }
+

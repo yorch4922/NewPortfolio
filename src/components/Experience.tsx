@@ -45,7 +45,7 @@ export default function Experience() {
   };
 
   return (
-    <section id="experience" className="py-24 bg-bg overflow-hidden">
+    <section id="experience" aria-labelledby="experience-title" className="py-24 bg-bg overflow-hidden">
       <motion.div 
         className="container-custom"
         variants={containerVariants}
@@ -54,7 +54,7 @@ export default function Experience() {
         viewport={{ once: true, margin: "-50px" }}
       >
         <div className="flex flex-col gap-6 mb-16 max-w-2xl">
-          <motion.h2 variants={itemVariants} className="font-serif text-4xl md:text-5xl font-bold text-text-primary">
+          <motion.h2 id="experience-title" variants={itemVariants} className="font-serif text-4xl md:text-5xl font-bold text-text-primary">
             Professional Experience
           </motion.h2>
           <motion.p variants={itemVariants} className="font-sans text-base md:text-lg text-text-secondary leading-relaxed">
@@ -62,47 +62,52 @@ export default function Experience() {
           </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-10">
+        <ul className="grid md:grid-cols-2 gap-10">
           {roles.map((role, i) => (
-            <motion.div 
+            <motion.li 
               key={i} 
               variants={itemVariants}
               whileHover={{ scale: 1.01 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="bg-card-bg p-8 rounded-2xl shadow-sm hover:shadow-xl border border-gray-100/50 flex flex-col gap-8 transition-shadow cursor-default"
+              className="list-none bg-card-bg p-8 rounded-2xl shadow-sm hover:shadow-xl border border-gray-100/50 flex flex-col gap-8 transition-shadow cursor-default"
             >
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-accent/5 rounded-full">
-                  {role.icon}
+              <article>
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-accent/5 rounded-full">
+                    {role.icon}
+                  </div>
+                  <h3 className="font-serif text-2xl font-bold text-accent">{role.title}</h3>
                 </div>
-                <h3 className="font-serif text-2xl font-bold text-accent">{role.title}</h3>
-              </div>
-              
-              <ul className="flex flex-col gap-5">
-                {role.list.map((item, j) => (
-                  <motion.li 
-                    key={j} 
-                    className="flex gap-4 items-start font-sans text-sm md:text-base text-text-primary leading-snug"
-                    variants={itemVariants}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
-                    {item}
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
+
+                <ul className="flex flex-col gap-5">
+                  {role.list.map((item, j) => (
+                    <motion.li
+                      key={j}
+                      className="flex gap-4 items-start font-sans text-sm md:text-base text-text-primary leading-snug"
+                      variants={itemVariants}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
+                      {item}
+                    </motion.li>
+                  ))}
+                </ul>
+              </article>
+            </motion.li>
           ))}
-        </div>
+        </ul>
 
         <motion.div 
           variants={itemVariants}
           className="mt-16 p-8 bg-accent/5 rounded-2xl border border-accent/10"
         >
           <p className="font-sans text-base md:text-lg text-text-primary leading-relaxed text-center italic">
-            &quot;Over the past several years, I have collaborated with front-end and back-end developers, GIS specialists, and key stakeholders to build user-centered applications — taking on roles as designer, researcher, product owner, and content strategist.&quot;
+            &quot;Over the past several years, I have collaborated with front-end and back-end developers, GIS specialists, and key stakeholders to build user-centered applications - taking on roles as designer, researcher, product owner, and content strategist.&quot;
           </p>
         </motion.div>
       </motion.div>
     </section>
   );
 }
+
+
+

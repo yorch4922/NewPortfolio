@@ -95,7 +95,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-card-bg overflow-hidden">
+    <section id="contact" aria-labelledby="contact-title" className="py-24 bg-card-bg overflow-hidden">
       <motion.div
         className="container-custom"
         variants={containerVariants}
@@ -107,7 +107,7 @@ export default function Contact() {
           {/* Left Column: Heading & Actions */}
           <div className="md:w-1/2 p-10 md:p-16 flex flex-col justify-center gap-10">
             <motion.div variants={itemVariants} className="flex flex-col gap-6">
-              <h2 className="font-serif text-5xl md:text-6xl font-bold text-accent leading-tight">
+              <h2 id="contact-title" className="font-serif text-5xl md:text-6xl font-bold text-accent leading-tight">
                 Let&apos;s work together.
               </h2>
               <p className="font-sans text-lg md:text-xl text-text-secondary leading-relaxed max-w-md">
@@ -148,7 +148,7 @@ export default function Contact() {
           {/* Right Column: Form Card */}
           <motion.div variants={itemVariants} className="md:w-1/2 p-6 md:p-12 bg-bg flex items-center justify-center">
             <div className="bg-white rounded-3xl p-8 md:p-12 w-full max-w-md shadow-xl border border-gray-50">
-              <form onSubmit={handleSubmit} className="flex flex-col gap-6" aria-describedby="contact-form-status">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-6" aria-describedby="contact-form-status" aria-busy={isSubmitting}>
                 <div className="absolute -left-[9999px]" aria-hidden="true">
                   <label htmlFor="company">Company</label>
                   <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
@@ -178,6 +178,7 @@ export default function Contact() {
                     id="email"
                     name="email"
                     placeholder="your@email.com"
+                    inputMode="email"
                     autoComplete="email"
                     required
                     className="w-full px-4 py-3 bg-[#F9FAFB] border border-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all font-sans text-text-primary"
@@ -214,6 +215,7 @@ export default function Contact() {
                   {fallbackMailtoUrl && (
                     <a
                       href={fallbackMailtoUrl}
+                      aria-label="Open your default email app with the prepared message"
                       className="inline-block mt-2 text-accent font-bold hover:underline"
                     >
                       Open email app

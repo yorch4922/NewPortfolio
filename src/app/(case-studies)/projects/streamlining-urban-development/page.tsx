@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function DigitalizingProcedures() {
   return (
-    <main className="min-h-screen bg-white font-sans text-text-primary">
+    <main id="main-content" className="min-h-screen bg-white font-sans text-text-primary">
       {/* Hero Section */}
       <section
         className="pt-40 pb-20 px-6 md:px-20 lg:px-32 flex flex-col items-center text-center max-w-7xl mx-auto">
@@ -308,5 +308,6 @@ export default function DigitalizingProcedures() {
     </main>
   );
 }
+
 
 

@@ -6,7 +6,7 @@ import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
-    <main className="min-h-screen selection:bg-accent/30 selection:text-accent">
+    <main id="main-content" className="min-h-screen selection:bg-accent/30 selection:text-accent">
       <Hero />
       <About />
       <Experience />
