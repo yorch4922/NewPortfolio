@@ -8,17 +8,17 @@ import CardSurface from "@/components/ui/CardSurface";
 export default function About() {
   const features = [
     {
-      icon: <UserCheck className="w-8 h-8 text-accent group-hover:text-white transition-colors" />,
+      icon: <UserCheck className="w-6 h-6 text-accent group-hover:text-white transition-colors" />,
       title: "Anthropological Background",
       desc: "My foundation in Social Anthropology gives me a unique perspective for understanding user behaviors, needs, and cultural contexts - going beyond surface-level research."
     },
     {
-      icon: <Search className="w-8 h-8 text-accent group-hover:text-white transition-colors" />,
+      icon: <Search className="w-6 h-6 text-accent group-hover:text-white transition-colors" />,
       title: "Qualitative Methods",
       desc: "To gain a genuine understanding of user behavior, I employ key ethnographic methods such as in-depth interviews and participant observation, ensuring designs reflect real-world complexity."
     },
     {
-      icon: <CheckCircle className="w-8 h-8 text-accent group-hover:text-white transition-colors" />,
+      icon: <CheckCircle className="w-6 h-6 text-accent group-hover:text-white transition-colors" />,
       title: "Constant Validation",
       desc: "I continuously validate design hypotheses through rigorous user testing, ensuring that final solutions are not just functional, but profoundly impactful and relevant to the end-user."
     }
@@ -71,7 +71,7 @@ export default function About() {
                 density="comfortable"
                 className="rounded-xl flex flex-col items-start text-left gap-5 group cursor-default"
               >
-                <div className="p-3 bg-white rounded-lg shadow-sm group-hover:bg-accent group-hover:text-white transition-colors duration-300">
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-white shadow-sm transition-colors duration-300 group-hover:bg-accent">
                   {f.icon}
                 </div>
                 <h3 className="font-serif text-xl font-bold text-accent">{f.title}</h3>

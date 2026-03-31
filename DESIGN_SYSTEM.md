@@ -119,6 +119,15 @@ Example:
   - optional intro paragraph
   - `ul` with cards as `li > article`
 
+### Case Study Components
+
+Use these shared components for case-study pages:
+
+- `CaseStudySectionHeading` from `src/components/case-study/CaseStudySectionHeading.tsx`
+  - Standardized eyebrow/title/description hierarchy.
+- `CaseStudyFinalCta` from `src/components/case-study/CaseStudyFinalCta.tsx`
+  - Standardized final conversion section with two CTA actions.
+
 ### Contact Form
 
 - Required: name, email, message.
