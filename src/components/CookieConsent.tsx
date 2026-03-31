@@ -33,8 +33,8 @@ export default function CookieConsent({ initialConsent }: CookieConsentProps) {
 
       {consent === null && (
         <div
-          role="dialog"
-          aria-modal="false"
+          role="region"
+          aria-label="Cookie consent banner"
           aria-labelledby="cookie-consent-title"
           aria-describedby="cookie-consent-description"
           className="fixed inset-x-0 bottom-0 z-[60] border-t border-gray-200 bg-white/95 backdrop-blur-sm"

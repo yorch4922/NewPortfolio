@@ -68,6 +68,36 @@ Every new page/component must satisfy:
 
 ## 5. Shared Component Patterns
 
+### Tokenized Surface API
+
+Use these primitives for new sections and cards:
+
+- `SectionSurface` from `src/components/ui/SectionSurface.tsx`
+- `CardSurface` from `src/components/ui/CardSurface.tsx`
+- token maps in `src/components/ui/surface-tokens.ts`
+
+Supported props:
+
+- `variant`: `default | muted | canvas | inverse`
+- `tone`: `neutral | accent`
+- `density`: `compact | comfortable | spacious`
+
+Example:
+
+```tsx
+<SectionSurface
+  id="case-study-problem"
+  ariaLabelledby="case-study-problem-title"
+  variant="muted"
+  density="comfortable"
+>
+  <h2 id="case-study-problem-title">Problem</h2>
+  <CardSurface as="article" variant="soft" density="comfortable">
+    ...
+  </CardSurface>
+</SectionSurface>
+```
+
 ### Navbar
 
 - Sticky top.
@@ -116,6 +146,7 @@ For each section:
 - Add `aria-labelledby`.
 - Prefer lists for repeated content.
 - Keep max line length readable (`max-w-*`).
+- Build sections using `SectionSurface` and `CardSurface` instead of ad-hoc class strings.
 
 ## 7. Interaction & Motion
 

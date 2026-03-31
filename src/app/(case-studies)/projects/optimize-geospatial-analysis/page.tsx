@@ -31,7 +31,7 @@ export default function OptimizeGeospatialAnalysis() {
             id="optimize-geospatial-analysis-title"
             className="font-serif text-4xl md:text-5xl lg:text-6xl font-black leading-tight text-[#1e293b]"
           >
-            Optimize geospatial analysis: A couple of clicks to get crucial Information
+            Optimize Geospatial Analysis: Critical insights in a couple of clicks
           </h1>
           <p className="text-gray-600 text-lg md:text-xl leading-relaxed font-light">
             Revolutionized how teams interact with complex spatial data through intuitive dashboard design and automated workflows.
@@ -46,7 +46,7 @@ export default function OptimizeGeospatialAnalysis() {
               src="https://5fjjbtb15mr59rsn.public.blob.vercel-storage.com/Background%2BShadow.svg"
               alt="AMRT Dashboard Mockup"
               fill
-              className="object-contain" // O usa "object-contain" si no quieres que se recorte nada del SVG
+              className="object-contain"
               priority
             />
           </div>
@@ -184,7 +184,7 @@ export default function OptimizeGeospatialAnalysis() {
               },
               {
                 title: "Export Workflows",
-                desc: "One-click reporting and summmaries distributed to key committees."
+                desc: "One-click reporting and summaries distributed to key committees."
               }
             ].map((feature, i) => (
               <li key={i} className="list-none flex gap-4 items-start">
@@ -201,10 +201,26 @@ export default function OptimizeGeospatialAnalysis() {
         <div
           className="flex-1 w-full aspect-square max-w-md relative"
         >
-          {/* Center Flow Diagram Placeholder */}
-          <div className="w-full h-full border-2 border-dashed border-[#ea580c]/50 rounded-full flex items-center justify-center flex-col gap-4 text-center p-12 bg-orange-50/30">
-            <Layers className="w-12 h-12 text-[#ea580c]" />
-            <span className="font-bold text-[#ea580c]">Unified Flow Diagram Placeholder</span>
+          <div className="w-full h-full rounded-3xl border border-[#ea580c]/20 bg-white shadow-xl p-8 flex flex-col gap-8 justify-center">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-xl bg-[#ea580c]/10 flex items-center justify-center">
+                <Layers className="w-6 h-6 text-[#ea580c]" />
+              </div>
+              <p className="font-bold text-[#1e293b]">Workflow Architecture</p>
+            </div>
+            <ol className="space-y-4">
+              {[
+                "Data Intake from unified geospatial sources",
+                "Context-aware layer recommendations",
+                "Task-focused analysis workspace",
+                "One-click export for committees",
+              ].map((step) => (
+                <li key={step} className="text-sm text-gray-600 leading-relaxed flex items-start gap-3">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#ea580c] shrink-0" />
+                  <span>{step}</span>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>
@@ -327,12 +343,12 @@ export default function OptimizeGeospatialAnalysis() {
         </div>
         <div className="flex flex-col sm:flex-row gap-4 mt-8">
           <div>
-            <Link href="/" className="inline-block px-8 py-4 bg-[#ea580c] text-white rounded font-bold hover:brightness-110 shadow-lg cursor-pointer transition-all">
+            <Link href="/#contact" className="inline-block px-8 py-4 bg-[#ea580c] text-white rounded font-bold hover:brightness-110 shadow-lg cursor-pointer transition-all">
               Start a Project
             </Link>
           </div>
           <div>
-            <Link href="/" className="inline-block px-8 py-4 bg-transparent border-2 border-gray-200 text-[#1e293b] rounded font-bold hover:border-gray-300 hover:bg-gray-50 shadow-sm cursor-pointer transition-all">
+            <Link href="/work" className="inline-block px-8 py-4 bg-transparent border-2 border-gray-200 text-[#1e293b] rounded font-bold hover:border-gray-300 hover:bg-gray-50 shadow-sm cursor-pointer transition-all">
               View More Work
             </Link>
           </div>

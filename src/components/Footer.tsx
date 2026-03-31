@@ -15,6 +15,11 @@ export default function Footer() {
         <nav aria-label="Footer" className="mb-4">
           <ul className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-xs font-bold uppercase tracking-[0.2em] text-white/60">
             <li className="list-none">
+              <Link href="/work" className="hover:text-accent transition-colors">
+                Work
+              </Link>
+            </li>
+            <li className="list-none">
               <Link href="/#about" className="hover:text-accent transition-colors">
                 About
               </Link>
@@ -27,6 +32,11 @@ export default function Footer() {
             <li className="list-none">
               <Link href="/#projects" className="hover:text-accent transition-colors">
                 Projects
+              </Link>
+            </li>
+            <li className="list-none">
+              <Link href="/jyresume" className="hover:text-accent transition-colors">
+                Resume
               </Link>
             </li>
             <li className="list-none">

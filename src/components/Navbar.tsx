@@ -2,18 +2,20 @@
 
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 const NAV_LINKS = [
+  { name: "Work", href: "/work" },
   { name: "About", href: "/#about" },
   { name: "Experience", href: "/#experience" },
-  { name: "Projects", href: "/#projects" },
+  { name: "Resume", href: "/jyresume" },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const mobileMenuId = useId();
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   // Handle scroll effect for transparency/blur
   useEffect(() => {
@@ -30,14 +32,39 @@ export default function Navbar() {
       return;
     }
 
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const menuContainer = mobileMenuRef.current;
+    const focusableSelector =
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const focusableElements = menuContainer
+      ? Array.from(menuContainer.querySelectorAll<HTMLElement>(focusableSelector))
+      : [];
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    firstElement?.focus();
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsOpen(false);
+        return;
+      }
+
+      if (event.key !== "Tab" || focusableElements.length === 0) {
+        return;
+      }
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement?.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement?.focus();
       }
     };
 
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
@@ -91,7 +118,6 @@ export default function Navbar() {
           onClick={() => setIsOpen((open) => !open)}
           aria-expanded={isOpen}
           aria-controls={mobileMenuId}
-          aria-haspopup="menu"
           aria-label={isOpen ? "Close menu" : "Open menu"}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -101,6 +127,7 @@ export default function Navbar() {
       {/* Mobile Menu Dropdown */}
       {isOpen && (
         <div
+          ref={mobileMenuRef}
           id={mobileMenuId}
           aria-label="Mobile menu"
           className="md:hidden absolute top-full left-0 w-full bg-white border-b border-gray-100 py-10 animate-in fade-in slide-in-from-top-4 shadow-xl"

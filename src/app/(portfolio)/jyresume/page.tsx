@@ -37,7 +37,7 @@ export default function ResumePage() {
                 />
               </div>
               <div className="absolute bottom-4 right-4 w-10 h-10 bg-accent rounded-full border-4 border-white flex items-center justify-center shadow-lg">
-                <span className="text-white text-lg font-bold">✓</span>
+                <span className="text-white text-lg font-bold" aria-hidden="true">&#10003;</span>
               </div>
             </div>
 

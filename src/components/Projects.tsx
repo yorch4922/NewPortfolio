@@ -4,11 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { track } from "@vercel/analytics/react";
+import SectionSurface from "@/components/ui/SectionSurface";
+import CardSurface from "@/components/ui/CardSurface";
 
 export default function Projects() {
   const projects = [
     {
-      title: "Optimize geospatial analysis: A couple of clicks to get crucial Information",
+      title: "Optimize Geospatial Analysis: Critical insights in a couple of clicks",
       badge: "GIS & Mapping",
       desc: "Designed and deployed a mapping application that empowers municipal staff to instantly access critical risk data and generate custom geographic layers-drastically reducing manual workload and democratizing data accessibility.",
       image: "https://5fjjbtb15mr59rsn.public.blob.vercel-storage.com/%C3%81reaTrabajo_Inicio%201.png",
@@ -56,7 +58,13 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" aria-labelledby="projects-title" className="py-24 bg-card-bg overflow-hidden">
+    <SectionSurface
+      id="projects"
+      ariaLabelledby="projects-title"
+      variant="muted"
+      density="comfortable"
+      withContainer={false}
+    >
       <motion.div
         className="container-custom"
         variants={containerVariants}
@@ -71,6 +79,14 @@ export default function Projects() {
           <motion.p variants={itemVariants} className="font-sans text-base md:text-lg text-text-secondary leading-relaxed">
             Selected case studies from years of collaboration with developers, GIS specialists, and municipal stakeholders.
           </motion.p>
+          <motion.div variants={itemVariants}>
+            <Link
+              href="/work"
+              className="inline-block text-sm font-bold uppercase tracking-[0.15em] text-accent hover:underline"
+            >
+              View all work
+            </Link>
+          </motion.div>
         </div>
 
         <ul className="grid gap-16">
@@ -80,9 +96,14 @@ export default function Projects() {
               variants={itemVariants}
               whileHover={{ y: -5 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="list-none flex flex-col md:flex-row gap-10 bg-bg rounded-3xl p-8 md:p-12 items-center hover:shadow-2xl transition-shadow border border-gray-100/50 group"
+              className="list-none group"
             >
-              <article className="w-full flex flex-col md:flex-row gap-10 items-center">
+              <CardSurface
+                as="article"
+                variant="soft"
+                density="spacious"
+                className="w-full flex flex-col md:flex-row gap-10 items-center rounded-3xl hover:shadow-2xl border-gray-100/50"
+              >
                 <div className="w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden shadow-md relative">
                   <motion.div
                     className="w-full h-full relative"
@@ -134,12 +155,12 @@ export default function Projects() {
                     </motion.div>
                   </div>
                 </div>
-              </article>
+              </CardSurface>
             </motion.li>
           ))}
         </ul>
       </motion.div>
-    </section>
+    </SectionSurface>
   );
 }
 

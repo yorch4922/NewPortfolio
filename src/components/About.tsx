@@ -2,6 +2,8 @@
 
 import { UserCheck, Search, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import SectionSurface from "@/components/ui/SectionSurface";
+import CardSurface from "@/components/ui/CardSurface";
 
 export default function About() {
   const features = [
@@ -33,7 +35,13 @@ export default function About() {
   };
 
   return (
-    <section id="about" aria-labelledby="about-title" className="py-24 bg-card-bg overflow-hidden">
+    <SectionSurface
+      id="about"
+      ariaLabelledby="about-title"
+      variant="muted"
+      density="comfortable"
+      withContainer={false}
+    >
       <motion.div 
         className="container-custom flex flex-col items-center gap-12 text-center"
         initial="hidden"
@@ -55,9 +63,14 @@ export default function About() {
               variants={itemVariants}
               whileHover={{ y: -5, scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="list-none bg-bg p-8 rounded-xl flex flex-col items-start text-left gap-5 border border-gray-100 shadow-sm transition-shadow group cursor-default"
+              className="list-none"
             >
-              <article>
+              <CardSurface
+                as="article"
+                variant="soft"
+                density="comfortable"
+                className="rounded-xl flex flex-col items-start text-left gap-5 group cursor-default"
+              >
                 <div className="p-3 bg-white rounded-lg shadow-sm group-hover:bg-accent group-hover:text-white transition-colors duration-300">
                   {f.icon}
                 </div>
@@ -65,12 +78,12 @@ export default function About() {
                 <p className="font-sans text-sm text-text-secondary leading-relaxed">
                   {f.desc}
                 </p>
-              </article>
+              </CardSurface>
             </motion.li>
           ))}
         </motion.ul>
       </motion.div>
-    </section>
+    </SectionSurface>
   );
 }
 

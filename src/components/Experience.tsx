@@ -2,6 +2,8 @@
 
 import { Layout, BarChart2 } from "lucide-react";
 import { motion } from "framer-motion";
+import SectionSurface from "@/components/ui/SectionSurface";
+import CardSurface from "@/components/ui/CardSurface";
 
 export default function Experience() {
   const roles = [
@@ -45,7 +47,13 @@ export default function Experience() {
   };
 
   return (
-    <section id="experience" aria-labelledby="experience-title" className="py-24 bg-bg overflow-hidden">
+    <SectionSurface
+      id="experience"
+      ariaLabelledby="experience-title"
+      variant="canvas"
+      density="comfortable"
+      withContainer={false}
+    >
       <motion.div 
         className="container-custom"
         variants={containerVariants}
@@ -69,9 +77,14 @@ export default function Experience() {
               variants={itemVariants}
               whileHover={{ scale: 1.01 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="list-none bg-card-bg p-8 rounded-2xl shadow-sm hover:shadow-xl border border-gray-100/50 flex flex-col gap-8 transition-shadow cursor-default"
+              className="list-none"
             >
-              <article>
+              <CardSurface
+                as="article"
+                variant="elevated"
+                density="comfortable"
+                className="hover:shadow-xl flex flex-col gap-8 cursor-default"
+              >
                 <div className="flex items-center gap-4">
                   <div className="p-3 bg-accent/5 rounded-full">
                     {role.icon}
@@ -91,7 +104,7 @@ export default function Experience() {
                     </motion.li>
                   ))}
                 </ul>
-              </article>
+              </CardSurface>
             </motion.li>
           ))}
         </ul>
@@ -105,7 +118,7 @@ export default function Experience() {
           </p>
         </motion.div>
       </motion.div>
-    </section>
+    </SectionSurface>
   );
 }
 

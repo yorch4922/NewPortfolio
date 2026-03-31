@@ -2,6 +2,8 @@
 
 import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
+import SectionSurface from "@/components/ui/SectionSurface";
+import CardSurface from "@/components/ui/CardSurface";
 
 const CONTACT_EMAIL = "jorgeyaelorga@gmail.com";
 
@@ -95,7 +97,13 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" aria-labelledby="contact-title" className="py-24 bg-card-bg overflow-hidden">
+    <SectionSurface
+      id="contact"
+      ariaLabelledby="contact-title"
+      variant="muted"
+      density="comfortable"
+      withContainer={false}
+    >
       <motion.div
         className="container-custom"
         variants={containerVariants}
@@ -147,7 +155,11 @@ export default function Contact() {
 
           {/* Right Column: Form Card */}
           <motion.div variants={itemVariants} className="md:w-1/2 p-6 md:p-12 bg-bg flex items-center justify-center">
-            <div className="bg-white rounded-3xl p-8 md:p-12 w-full max-w-md shadow-xl border border-gray-50">
+            <CardSurface
+              variant="outlined"
+              density="spacious"
+              className="rounded-3xl w-full max-w-md shadow-xl border-gray-50"
+            >
               <form onSubmit={handleSubmit} className="flex flex-col gap-6" aria-describedby="contact-form-status" aria-busy={isSubmitting}>
                 <div className="absolute -left-[9999px]" aria-hidden="true">
                   <label htmlFor="company">Company</label>
@@ -223,10 +235,10 @@ export default function Contact() {
                   )}
                 </div>
               </form>
-            </div>
+            </CardSurface>
           </motion.div>
         </div>
       </motion.div>
-    </section>
+    </SectionSurface>
   );
 }

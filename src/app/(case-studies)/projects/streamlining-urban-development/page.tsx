@@ -14,9 +14,10 @@ export default function DigitalizingProcedures() {
     <main id="main-content" className="min-h-screen bg-white font-sans text-text-primary">
       {/* Hero Section */}
       <section
+        aria-labelledby="streamlining-title"
         className="pt-40 pb-20 px-6 md:px-20 lg:px-32 flex flex-col items-center text-center max-w-7xl mx-auto">
         <span className="text-accent font-bold text-sm tracking-widest uppercase mb-4">Case Study</span>
-        <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+        <h1 id="streamlining-title" className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
           Streamlining Urban Development Processes
         </h1>
         <p className="text-text-secondary text-lg md:text-xl max-w-3xl mb-10 leading-relaxed font-light">
@@ -52,9 +53,10 @@ export default function DigitalizingProcedures() {
 
       {/* Executive Summary / Value Prop */}
       <section
+        aria-labelledby="value-proposition-title"
         className="py-24 px-6 md:px-20 lg:px-32 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr,300px] gap-20 lg:gap-32">
         <div className="flex flex-col gap-6">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-text-primary">Value Proposition</h2>
+          <h2 id="value-proposition-title" className="font-serif text-3xl md:text-4xl font-bold text-text-primary">Value Proposition</h2>
           <p className="text-text-secondary text-lg leading-relaxed font-light">
             Our objective was to demystify complex municipal procedures. We delivered a streamlined digital ecosystem that provides citizens with fast, intuitive service while bridging the communication gap with local government.
           </p>
@@ -80,11 +82,12 @@ export default function DigitalizingProcedures() {
 
       {/* Discovery Phase: Research Insights */}
       <section
+        aria-labelledby="discovery-insights-title"
         className="py-24 bg-[#F8F9FA] px-6 md:px-20 lg:px-32">
         <div className="max-w-7xl mx-auto flex flex-col gap-12">
           <div className="text-center space-y-4">
             <span className="text-accent font-bold text-sm tracking-widest uppercase italic">01. Discovery Phase</span>
-            <h2 className="font-serif text-3xl md:text-5xl font-bold text-text-primary">Strategic Discovery & User Insights</h2>
+            <h2 id="discovery-insights-title" className="font-serif text-3xl md:text-5xl font-bold text-text-primary">Strategic Discovery & User Insights</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -105,7 +108,7 @@ export default function DigitalizingProcedures() {
               </div>
               <h3 className="text-2xl font-bold text-text-primary">Pain-Points Identified</h3>
               <p className="text-text-secondary leading-relaxed font-light">
-                Fragmented data sources, lack of real time status updates and complex legal jargon were the primary barriers to user efficiency.
+                Fragmented data sources, lack of real-time status updates, and complex legal jargon were the primary barriers to user efficiency.
               </p>
             </div>
           </div>
@@ -206,11 +209,12 @@ export default function DigitalizingProcedures() {
 
       {/* Feature Deep-Dive 1 */}
       <section
+        aria-labelledby="dynamic-form-title"
         className="py-24 bg-[#FDF2E9] px-6 md:px-20 lg:px-32">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
           <div className="flex flex-col gap-8 flex-1">
-            <span className="text-accent font-bold text-sm tracking-widest uppercase italic font-bold">SPECIFIC FEATURE CASE</span>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary leading-tight">Dynamic Form for Every Procedure</h2>
+            <span className="text-accent text-sm font-bold tracking-widest uppercase italic">SPECIFIC FEATURE CASE</span>
+            <h2 id="dynamic-form-title" className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary leading-tight">Dynamic Form for Every Procedure</h2>
             <p className="text-text-secondary text-lg leading-relaxed font-light">
               A specialized tool for reviewing descriptive memories, ensuring that all legal and technical requirements are met before final approval.
             </p>
@@ -229,6 +233,7 @@ export default function DigitalizingProcedures() {
 
       {/* Feature Deep-Dive 2 */}
       <section
+        aria-labelledby="citizen-service-panel-title"
         className="py-24 px-6 md:px-20 lg:px-32 bg-white">
         <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-32">
           <div className="w-full lg:w-1/2 rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-white">
@@ -241,7 +246,7 @@ export default function DigitalizingProcedures() {
             />
           </div>
           <div className="flex flex-col gap-8 flex-1">
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary leading-tight">Panel de Atencion</h2>
+            <h2 id="citizen-service-panel-title" className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary leading-tight">Citizen Service Panel (Panel de Atencion)</h2>
             <p className="text-text-secondary text-lg leading-relaxed font-light">
               The central hub for government personnel to track citizen requests, manage appointments, and provide real-time updates.
             </p>
@@ -289,9 +294,10 @@ export default function DigitalizingProcedures() {
 
       {/* Final CTA */}
       <section
+        aria-labelledby="streamlining-final-cta-title"
         className="py-40 px-6 text-center max-w-5xl mx-auto flex flex-col items-center gap-12">
         <div className="space-y-6">
-          <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl font-black text-accent tracking-tighter uppercase leading-none">Liked this project?</h2>
+          <h2 id="streamlining-final-cta-title" className="font-serif text-5xl md:text-7xl lg:text-8xl font-black text-accent tracking-tighter uppercase leading-none">Liked this project?</h2>
           <p className="text-text-secondary text-xl md:text-2xl font-light max-w-2xl mx-auto leading-relaxed">
             I am specifically looking for user research and qualitative analyst jobs, apply to improve my knowledge in your team!
           </p>
@@ -300,8 +306,8 @@ export default function DigitalizingProcedures() {
           <Link href="/#contact" className="px-12 py-5 bg-accent text-white rounded-2xl font-bold hover:brightness-110 active:scale-95 transition-all shadow-2xl shadow-accent/30 text-lg">
             Let&apos;s talk
           </Link>
-          <Link href="/#projects" className="px-12 py-5 border-2 border-accent/20 text-accent rounded-2xl font-bold hover:bg-accent/5 active:scale-95 transition-all text-lg">
-            My next project
+          <Link href="/work" className="px-12 py-5 border-2 border-accent/20 text-accent rounded-2xl font-bold hover:bg-accent/5 active:scale-95 transition-all text-lg">
+            See more case studies
           </Link>
         </div>
       </section>
