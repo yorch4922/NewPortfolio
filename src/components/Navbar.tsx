@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
+import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 
 const NAV_LINKS = [
   { name: "Work", href: "/work" },
@@ -16,6 +17,13 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const mobileMenuId = useId();
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll();
+  const progressScale = useSpring(scrollYProgress, {
+    stiffness: reduceMotion ? 1000 : 140,
+    damping: reduceMotion ? 1000 : 28,
+    mass: reduceMotion ? 1 : 0.2,
+  });
 
   // Handle scroll effect for transparency/blur
   useEffect(() => {
@@ -74,7 +82,7 @@ export default function Navbar() {
   }, [isOpen]);
 
   return (
-    <nav aria-label="Primary" className={`sticky top-0 z-50 transition-all duration-300 ${
+    <nav aria-label="Primary" className={`sticky top-0 z-50 transition-all duration-300 relative overflow-hidden ${
       isScrolled 
         ? "bg-white/90 backdrop-blur-md border-b border-gray-200 py-3" 
         : "bg-white border-b border-transparent py-5"
@@ -156,6 +164,12 @@ export default function Navbar() {
           </ul>
         </div>
       )}
+
+      <motion.span
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-0 h-[2px] w-full origin-left bg-gradient-to-r from-accent/60 via-accent to-accent/60"
+        style={{ scaleX: progressScale }}
+      />
     </nav>
   );
 }

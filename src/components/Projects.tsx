@@ -2,13 +2,125 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { track } from "@vercel/analytics/react";
 import SectionSurface from "@/components/ui/SectionSurface";
 import CardSurface from "@/components/ui/CardSurface";
 
+type ProjectCardData = {
+  title: string;
+  badge: string;
+  desc: string;
+  image: string;
+  href: string;
+  buttonText?: string;
+  isExternal?: boolean;
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8 },
+  },
+};
+
+function ProjectCard({
+  project,
+  onProjectClick,
+}: {
+  project: ProjectCardData;
+  onProjectClick: (title: string) => void;
+}) {
+  const cardRef = useRef<HTMLLIElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start 95%", "end 10%"],
+  });
+  const cardY = useTransform(scrollYProgress, [0, 1], [reduceMotion ? 0 : 45, reduceMotion ? 0 : -24]);
+  const mediaScale = useTransform(scrollYProgress, [0, 1], [1, reduceMotion ? 1 : 1.06]);
+
+  return (
+    <motion.li
+      ref={cardRef}
+      variants={itemVariants}
+      whileHover={{ y: -5 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      className="list-none group"
+    >
+      <motion.div style={{ y: cardY }}>
+        <CardSurface
+          as="article"
+          variant="soft"
+          density="spacious"
+          className="w-full flex flex-col md:flex-row gap-10 items-center rounded-3xl hover:shadow-2xl border-gray-100/50"
+        >
+          <div className="w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden shadow-md relative">
+            <motion.div className="w-full h-full relative" style={{ scale: mediaScale }}>
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </motion.div>
+          </div>
+
+          <div className="w-full md:w-1/2 flex flex-col gap-6">
+            <span className="font-sans text-xs font-bold tracking-[0.2em] text-accent uppercase bg-accent/5 self-start px-3 py-1 rounded-full">
+              {project.badge}
+            </span>
+            <h3 className="font-serif text-2xl md:text-3xl font-bold text-text-primary leading-tight">
+              {project.title}
+            </h3>
+            <p className="font-sans text-base text-text-secondary leading-relaxed">
+              {project.desc}
+            </p>
+            <div className="pt-4 flex gap-4">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                {project.isExternal ? (
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${project.buttonText || "View Project"} (opens in new tab)`}
+                    onClick={() => onProjectClick(project.title)}
+                    className="inline-block px-6 py-3 bg-accent text-white rounded font-bold hover:brightness-110 shadow-sm transition-colors cursor-pointer"
+                  >
+                    {project.buttonText || "View Project"}
+                  </a>
+                ) : (
+                  <Link
+                    href={project.href}
+                    onClick={() => onProjectClick(project.title)}
+                    className="inline-block px-6 py-3 bg-accent text-white rounded font-bold hover:brightness-110 shadow-sm transition-colors cursor-pointer"
+                  >
+                    {project.buttonText || "View Project"}
+                  </Link>
+                )}
+              </motion.div>
+            </div>
+          </div>
+        </CardSurface>
+      </motion.div>
+    </motion.li>
+  );
+}
+
 export default function Projects() {
-  const projects = [
+  const projects: ProjectCardData[] = [
     {
       title: "Optimize Geospatial Analysis: Critical insights in a couple of clicks",
       badge: "GIS & Mapping",
@@ -37,23 +149,6 @@ export default function Projects() {
   const handleProjectClick = (title: string) => {
     if (title.includes("Thesis")) {
       track('viewed_thesis', { project: title });
-    }
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8 }
     }
   };
 
@@ -90,73 +185,12 @@ export default function Projects() {
         </div>
 
         <ul className="grid gap-16">
-          {projects.map((p) => (
-            <motion.li
-              key={p.title}
-              variants={itemVariants}
-              whileHover={{ y: -5 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="list-none group"
-            >
-              <CardSurface
-                as="article"
-                variant="soft"
-                density="spacious"
-                className="w-full flex flex-col md:flex-row gap-10 items-center rounded-3xl hover:shadow-2xl border-gray-100/50"
-              >
-                <div className="w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden shadow-md relative">
-                  <motion.div
-                    className="w-full h-full relative"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <Image
-                      src={p.image}
-                      alt={p.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover"
-                    />
-                  </motion.div>
-                </div>
-
-                <div className="w-full md:w-1/2 flex flex-col gap-6">
-                  <span className="font-sans text-xs font-bold tracking-[0.2em] text-accent uppercase bg-accent/5 self-start px-3 py-1 rounded-full">
-                    {p.badge}
-                  </span>
-                  <h3 className="font-serif text-2xl md:text-3xl font-bold text-text-primary leading-tight">
-                    {p.title}
-                  </h3>
-                  <p className="font-sans text-base text-text-secondary leading-relaxed">
-                    {p.desc}
-                  </p>
-                  <div className="pt-4 flex gap-4">
-                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                      {p.isExternal ? (
-                        <a
-                          href={p.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`${p.buttonText || "View Project"} (opens in new tab)`}
-                          onClick={() => handleProjectClick(p.title)}
-                          className="inline-block px-6 py-3 bg-accent text-white rounded font-bold hover:brightness-110 shadow-sm transition-colors cursor-pointer"
-                        >
-                          {p.buttonText || "View Project"}
-                        </a>
-                      ) : (
-                        <Link
-                          href={p.href}
-                          onClick={() => handleProjectClick(p.title)}
-                          className="inline-block px-6 py-3 bg-accent text-white rounded font-bold hover:brightness-110 shadow-sm transition-colors cursor-pointer"
-                        >
-                          {p.buttonText || "View Project"}
-                        </Link>
-                      )}
-                    </motion.div>
-                  </div>
-                </div>
-              </CardSurface>
-            </motion.li>
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.title}
+              project={project}
+              onProjectClick={handleProjectClick}
+            />
           ))}
         </ul>
       </motion.div>

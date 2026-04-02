@@ -55,6 +55,8 @@ export default function Contact() {
 
       const data = (await response.json().catch(() => ({}))) as {
         error?: string;
+        warning?: string;
+        delivered?: boolean;
         fallback?: "mailto";
         mailtoUrl?: string;
       };
@@ -67,7 +69,9 @@ export default function Contact() {
       if (data.fallback === "mailto" && data.mailtoUrl) {
         setFallbackMailtoUrl(data.mailtoUrl);
         setStatusMessage(
-          "Contact service is in fallback mode. Your email app should open with your message pre-filled. Use 'Open email app' if nothing happens.",
+          data.warning
+            ? `${data.warning} Your email app should open with your message pre-filled. Use 'Open email app' if nothing happens.`
+            : "Contact service is in fallback mode. Your email app should open with your message pre-filled. Use 'Open email app' if nothing happens.",
         );
         window.location.href = data.mailtoUrl;
         form.reset();
@@ -75,7 +79,11 @@ export default function Contact() {
       }
 
       setFallbackMailtoUrl(null);
-      setStatusMessage("Thanks. Your message has been sent.");
+      setStatusMessage(
+        data.warning
+          ? `Thanks. Your message was accepted with a warning: ${data.warning}`
+          : "Thanks. Your message has been sent.",
+      );
       form.reset();
     } catch {
       setStatusMessage("A network error occurred. Please try again.");

@@ -2,9 +2,25 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  const textY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : -70]);
+  const imageY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : -115]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, reduceMotion ? 1 : 1.08]);
+  const imageRotate = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : -2]);
+  const auraY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : -90]);
+  const auraScale = useTransform(scrollYProgress, [0, 1], [1, reduceMotion ? 1 : 1.1]);
+  const cueOpacity = useTransform(scrollYProgress, [0, 0.22], [1, 0]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -23,7 +39,16 @@ export default function Hero() {
   };
 
   return (
-    <section aria-labelledby="hero-title" className="bg-bg py-20 md:py-32 overflow-hidden">
+    <section
+      ref={sectionRef}
+      aria-labelledby="hero-title"
+      className="relative bg-bg py-20 md:py-32 overflow-hidden"
+    >
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-16 hidden h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,_rgba(211,84,0,0.18)_0%,_rgba(211,84,0,0.05)_45%,_transparent_72%)] blur-2xl md:block"
+        style={{ y: auraY, scale: auraScale }}
+      />
       <motion.div
         className="container-custom grid md:grid-cols-2 gap-12 items-center"
         variants={containerVariants}
@@ -31,7 +56,10 @@ export default function Hero() {
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
       >
-        <div className="order-2 md:order-1 flex flex-col gap-6 text-center md:text-left">
+        <motion.div
+          className="order-2 md:order-1 flex flex-col gap-6 text-center md:text-left"
+          style={{ y: textY }}
+        >
           <motion.span variants={itemVariants} className="font-sans text-xs md:text-sm font-semibold tracking-[0.2em] text-accent uppercase">
             UX Designer & Researcher
           </motion.span>
@@ -54,13 +82,18 @@ export default function Hero() {
               </Link>
             </motion.div>
           </motion.div>
-        </div>
+        </motion.div>
 
-        <motion.div variants={itemVariants} className="order-1 md:order-2 flex justify-center">
+        <motion.div
+          variants={itemVariants}
+          className="order-1 md:order-2 flex justify-center"
+          style={{ y: imageY }}
+        >
           <motion.div
-            whileHover={{ scale: 1.02, rotate: 1 }}
+            whileHover={{ scale: 1.02, rotate: 0.5 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
             className="relative w-72 h-72 md:w-[480px] md:h-[480px]"
+            style={{ scale: imageScale, rotate: imageRotate }}
           >
             {/* Gradient/Pattern Background for Image */}
             <div className="absolute inset-0 rounded-full bg-[#C8BAA8] overflow-hidden border-8 border-white/50 shadow-2xl">
@@ -75,6 +108,36 @@ export default function Hero() {
             </div>
           </motion.div>
         </motion.div>
+      </motion.div>
+
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex"
+        style={{ opacity: cueOpacity }}
+      >
+        <span className="font-sans text-[10px] font-bold uppercase tracking-[0.35em] text-accent/70">
+          Scroll
+        </span>
+        <motion.span
+          className="h-10 w-px rounded-full bg-accent/50"
+          animate={
+            reduceMotion
+              ? undefined
+              : {
+                  y: [0, 8, 0],
+                  opacity: [0.4, 1, 0.4],
+                }
+          }
+          transition={
+            reduceMotion
+              ? undefined
+              : {
+                  duration: 1.8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }
+          }
+        />
       </motion.div>
     </section>
   );

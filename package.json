@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:webhook": "node scripts/dev-contact-webhook.mjs",
+    "contact:preflight:local": "node scripts/contact-preflight.mjs --mode=development",
+    "contact:preflight": "node scripts/contact-preflight.mjs --mode=production",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

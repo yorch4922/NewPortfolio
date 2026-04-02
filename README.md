@@ -20,11 +20,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 The contact form submits to `POST /api/contact`.
 
-Create a `.env.local` file with:
+Copy `.env.example` to `.env.local` and adjust values:
 
 ```bash
 CONTACT_TO_EMAIL=jorgeyaelorga@gmail.com
-CONTACT_FROM_EMAIL="Portfolio Contact <onboarding@resend.dev>"
+CONTACT_FROM_EMAIL="Portfolio Contact <hello@yourdomain.com>"
 CONTACT_WEBHOOK_URL=your_webhook_url
 CONTACT_WEBHOOK_SECRET=your_shared_secret
 CONTACT_WEBHOOK_TIMEOUT_MS=10000
@@ -37,6 +37,51 @@ Delivery behavior:
 - If `RESEND_API_KEY` is set, an email notification is also sent.
 - If both are set, both channels are attempted.
 - If neither is set, UI falls back to `mailto`.
+- If configured channels fail (for example, webhook offline), the API now also falls back to `mailto` instead of returning a hard failure.
+
+### Local webhook quick start
+
+If your `.env.local` points to `http://127.0.0.1:34567/`, start the local receiver in a second terminal:
+
+```bash
+npm run dev:webhook
+```
+
+Then run the app:
+
+```bash
+npm run dev
+```
+
+Optional: persist incoming webhook payloads to `tmp/contact-leads.ndjson`:
+
+```bash
+SAVE_CONTACT_LEADS=true npm run dev:webhook
+```
+
+### Production rollout (Vercel)
+
+1. Set at least one automated channel:
+   `CONTACT_WEBHOOK_URL` or `RESEND_API_KEY` (you can set both).
+2. If using Resend, set a verified sender in `CONTACT_FROM_EMAIL`.
+3. Never use localhost webhook URLs in production.
+4. Run config preflight before deploy:
+
+```bash
+npm run contact:preflight
+```
+
+For local checks (allows localhost webhooks):
+
+```bash
+npm run contact:preflight:local
+```
+
+5. In Vercel project settings, add these Production Environment Variables:
+   `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, `CONTACT_WEBHOOK_URL`, `CONTACT_WEBHOOK_SECRET`, `CONTACT_WEBHOOK_TIMEOUT_MS`, `RESEND_API_KEY`.
+6. Redeploy after updating env vars.
+
+The API now automatically skips localhost webhooks in production and falls back to `mailto` if automated delivery fails.
 
 ### Google Sheets via Apps Script webhook
 

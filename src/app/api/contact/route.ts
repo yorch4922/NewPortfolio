@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const DEFAULT_TO_EMAIL = "jorgeyaelorga@gmail.com"
+const DEFAULT_TO_EMAIL = "jorgeyaelorga@gmail.com";
 const DEFAULT_FROM_EMAIL = "Portfolio Contact <onboarding@resend.dev>";
 const MAX_NAME_LENGTH = 120;
 const MAX_MESSAGE_LENGTH = 4000;
@@ -31,6 +31,19 @@ function parseWebhookTimeout(value: string | undefined) {
     return DEFAULT_WEBHOOK_TIMEOUT_MS;
   }
   return Math.min(parsed, 30000);
+}
+
+function isLocalWebhookUrl(rawUrl: string) {
+  try {
+    const parsed = new URL(rawUrl);
+    return ["localhost", "127.0.0.1", "::1"].includes(parsed.hostname);
+  } catch {
+    return false;
+  }
+}
+
+function joinWarnings(parts: string[]) {
+  return parts.filter(Boolean).join(" ");
 }
 
 function getClientIp(request: Request) {
@@ -172,11 +185,30 @@ export async function POST(request: Request) {
   const resendApiKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.CONTACT_TO_EMAIL ?? DEFAULT_TO_EMAIL;
   const fromEmail = process.env.CONTACT_FROM_EMAIL ?? DEFAULT_FROM_EMAIL;
+  const isProduction =
+    process.env.VERCEL_ENV === "production" || process.env.NODE_ENV === "production";
 
   const deliveredTo: DeliveryChannel[] = [];
   const deliveryErrors: string[] = [];
+  const configWarnings: string[] = [];
 
-  if (webhookUrl) {
+  const shouldSkipWebhook = webhookUrl
+    ? isProduction && isLocalWebhookUrl(webhookUrl)
+    : false;
+
+  if (shouldSkipWebhook) {
+    configWarnings.push(
+      "CONTACT_WEBHOOK_URL points to localhost and was skipped in production.",
+    );
+  }
+
+  if (resendApiKey && fromEmail === DEFAULT_FROM_EMAIL) {
+    configWarnings.push(
+      "CONTACT_FROM_EMAIL is using the default sender; configure a verified production sender.",
+    );
+  }
+
+  if (webhookUrl && !shouldSkipWebhook) {
     const webhookPayload = {
       submittedAt: new Date().toISOString(),
       name,
@@ -222,26 +254,44 @@ export async function POST(request: Request) {
     }
   }
 
+  if (deliveryErrors.length > 0) {
+    console.warn("[contact] delivery issues detected", {
+      deliveredTo,
+      deliveryErrors,
+      webhookConfigured: Boolean(webhookUrl),
+      resendConfigured: Boolean(resendApiKey),
+      skippedLocalWebhookInProduction: shouldSkipWebhook,
+    });
+  }
+
   if (deliveredTo.length === 0) {
-    if (!webhookUrl && !resendApiKey) {
-      return NextResponse.json({
+    const hasConfiguredChannel = Boolean(webhookUrl || resendApiKey);
+    const baseWarning = hasConfiguredChannel
+      ? "Automated delivery failed. Fallback mode enabled."
+      : "No automated delivery channel configured. Fallback mode enabled.";
+    const warning = joinWarnings([baseWarning, ...configWarnings]);
+
+    return NextResponse.json(
+      {
         ok: true,
         delivered: false,
         fallback: "mailto",
         mailtoUrl: buildMailtoUrl({ toEmail, name, email, message }),
-      });
-    }
-
-    return NextResponse.json(
-      { error: "Unable to send the message right now. Please try again later." },
-      { status: 502 },
+        warning,
+      },
+      { status: hasConfiguredChannel ? 202 : 200 },
     );
   }
+
+  const successWarning = joinWarnings([
+    deliveryErrors.length > 0 ? "Partial delivery completed." : "",
+    ...configWarnings,
+  ]);
 
   return NextResponse.json({
     ok: true,
     delivered: true,
     deliveredTo,
-    warning: deliveryErrors.length > 0 ? "Partial delivery completed." : undefined,
+    warning: successWarning || undefined,
   });
 }
